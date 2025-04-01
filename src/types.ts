@@ -1,5 +1,7 @@
 import { RestEndpointMethodTypes } from "@octokit/rest";
 
+export type ComponentType = 'receiver' | 'processor' | 'exporter';
+
 export interface Component {
     name: string;
     description: string;

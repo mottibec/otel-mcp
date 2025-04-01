@@ -5,6 +5,7 @@ import { z } from "zod";
 import { fetchComponents, fetchComponentConfig } from "./github.js";
 import fs from 'fs/promises';
 import path from 'path';
+import { ComponentType } from "./types.js";
 
 // Simple logger implementation
 const logger = {
@@ -76,7 +77,7 @@ async function updateResourceFiles() {
 }
 
 // Function to save component schemas
-async function saveComponentSchemas(type: 'receiver' | 'processor' | 'exporter', components: any[]) {
+async function saveComponentSchemas(type: ComponentType, components: any[]) {
     const typeDir = path.join(SCHEMAS_DIR, `${type}s`);
 
     for (const component of components) {
@@ -88,7 +89,7 @@ async function saveComponentSchemas(type: 'receiver' | 'processor' | 'exporter',
 }
 
 // Function to load component schema
-async function loadComponentSchema(type: 'receiver' | 'processor' | 'exporter', name: string) {
+async function loadComponentSchema(type: ComponentType, name: string) {
     try {
         const schemaPath = path.join(SCHEMAS_DIR, `${type}s`, `${name}.json`);
         const schemaContent = await fs.readFile(schemaPath, 'utf-8');
@@ -217,8 +218,8 @@ server.resource("component-schemas", new ResourceTemplate("component://{type}/{n
             if (type && name) {
                 // Convert plural to singular for the component type
                 const componentType = type.endsWith('s') ?
-                    type.slice(0, -1) as 'receiver' | 'processor' | 'exporter' :
-                    type as 'receiver' | 'processor' | 'exporter';
+                    type.slice(0, -1) as ComponentType :
+                    type as ComponentType;
 
                 // Load specific component schema
                 const schema = await loadComponentSchema(componentType, name);
