@@ -1,79 +1,21 @@
 [
   {
     "name": "attributesprocessor",
-    "description": "The attributes processor modifies attributes of a span, log, or metric. Please refer to",
+    "description": "The attributes processor modifies attributes of a span, log, or metric. Please refer to [config.go](./config.go) for the config spec.",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/attributesprocessor/README.md",
-    "configSchema": {
-      "fields": [],
-      "imports": [
-        "errors",
-        "go.opentelemetry.io/collector/component",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/attraction",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/filter/filterconfig"
-      ],
-      "packageName": "attributesprocessor"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/attributesprocessor/README.md"
   },
   {
     "name": "coralogixprocessor",
-    "description": "## Description",
+    "description": "No description available",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/coralogixprocessor/README.md",
-    "configSchema": {
-      "fields": [],
-      "imports": [],
-      "packageName": "coralogixprocessor"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/coralogixprocessor/README.md"
   },
   {
     "name": "cumulativetodeltaprocessor",
-    "description": "## Description",
+    "description": "No description available",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/cumulativetodeltaprocessor/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "MaxStaleness",
-          "type": "time.Duration",
-          "description": "MaxStaleness is the total time a state entry will live past the time it was last seen. Set to 0 to retain state indefinitely.",
-          "required": true,
-          "mapstructureTag": "max_staleness"
-        },
-        {
-          "name": "InitialValue",
-          "type": "tracking.InitialValue",
-          "description": "InitialValue determines how to handle the first datapoint for a given metric. Valid values: - auto: (default) send the first point iff the startime is set AND the starttime happens after the component started AND the starttime is different from the timestamp - keep: always send the first point - drop: don't send the first point, but store it for subsequent delta calculations",
-          "required": true,
-          "mapstructureTag": "initial_value"
-        },
-        {
-          "name": "Include",
-          "type": "MatchMetrics",
-          "description": "Include specifies a filter on the metrics that should be converted. Exclude specifies a filter on the metrics that should not be converted. If neither `include` nor `exclude` are set, all metrics will be converted. Cannot be used with deprecated Metrics config option.",
-          "required": true,
-          "mapstructureTag": "include"
-        },
-        {
-          "name": "Exclude",
-          "type": "MatchMetrics",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "exclude"
-        }
-      ],
-      "imports": [
-        "fmt",
-        "strings",
-        "time",
-        "go.opentelemetry.io/collector/component",
-        "go.opentelemetry.io/collector/pdata/pmetric",
-        "golang.org/x/exp/maps",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/filter/filterset",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/processor/cumulativetodeltaprocessor/internal/tracking"
-      ],
-      "packageName": "cumulativetodeltaprocessor"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/cumulativetodeltaprocessor/README.md"
   },
   {
     "name": "datadogsemanticsprocessor",
@@ -96,7 +38,7 @@
   },
   {
     "name": "deltatocumulativeprocessor",
-    "description": "## Description",
+    "description": "No description available",
     "stability": "Unknown",
     "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/deltatocumulativeprocessor/README.md",
     "configSchema": {
@@ -132,146 +74,29 @@
     "name": "deltatorateprocessor",
     "description": "**Status: under development; Not recommended for production usage.**",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/deltatorateprocessor/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "Metrics",
-          "type": "[]string",
-          "description": "List of delta sum metrics to convert to rates",
-          "required": true,
-          "mapstructureTag": "metrics"
-        }
-      ],
-      "imports": [
-        "fmt"
-      ],
-      "packageName": "deltatorateprocessor"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/deltatorateprocessor/README.md"
   },
   {
     "name": "filterprocessor",
     "description": "The filterprocessor allows dropping spans, span events, metrics, datapoints, and logs from the collector.",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/filterprocessor/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "ErrorMode",
-          "type": "ottl.ErrorMode",
-          "description": "ErrorMode determines how the processor reacts to errors that occur while processing an OTTL condition. Valid values are `ignore` and `propagate`. `ignore` means the processor ignores errors returned by conditions and continues on to the next condition. This is the recommended mode. `propagate` means the processor returns the error up the pipeline.  This will result in the payload being dropped from the collector. The default value is `propagate`.",
-          "required": true,
-          "mapstructureTag": "error_mode"
-        },
-        {
-          "name": "Metrics",
-          "type": "MetricFilters",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "metrics"
-        },
-        {
-          "name": "Logs",
-          "type": "LogFilters",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "logs"
-        },
-        {
-          "name": "Spans",
-          "type": "filterconfig.MatchConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "spans"
-        },
-        {
-          "name": "Traces",
-          "type": "TraceFilters",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "traces"
-        }
-      ],
-      "imports": [
-        "errors",
-        "fmt",
-        "strings",
-        "go.opentelemetry.io/collector/component",
-        "go.opentelemetry.io/collector/pdata/plog",
-        "go.uber.org/multierr",
-        "go.uber.org/zap",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/filter/filterconfig",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/filter/filterottl",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/filter/filterset",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/filter/filterset/regexp",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl"
-      ],
-      "packageName": "filterprocessor"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/filterprocessor/README.md"
   },
   {
     "name": "geoipprocessor",
-    "description": "## Description",
+    "description": "No description available",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/geoipprocessor/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "Providers",
-          "type": "map[string]provider.Config",
-          "description": "Providers specifies the sources to extract geographical information about a given IP.",
-          "required": true,
-          "mapstructureTag": "-"
-        },
-        {
-          "name": "Context",
-          "type": "ContextID",
-          "description": "Context section allows specifying the source type to look for the IP. Available options: resource or record.",
-          "required": true,
-          "mapstructureTag": "context"
-        },
-        {
-          "name": "Attributes",
-          "type": "[]attribute.Key",
-          "description": "An array of attribute names, which are used for the IP address lookup",
-          "required": true,
-          "mapstructureTag": "attributes"
-        }
-      ],
-      "imports": [
-        "errors",
-        "fmt",
-        "strings",
-        "go.opentelemetry.io/collector/component",
-        "go.opentelemetry.io/collector/confmap",
-        "go.opentelemetry.io/otel/attribute",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/processor/geoipprocessor/internal/provider"
-      ],
-      "packageName": "geoipprocessor"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/geoipprocessor/README.md"
   },
   {
     "name": "groupbyattrsprocessor",
-    "description": "## Description",
+    "description": "No description available",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/groupbyattrsprocessor/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "GroupByKeys",
-          "type": "[]string",
-          "description": "GroupByKeys describes the attribute names that are going to be used for grouping. Empty value is allowed, since processor in such case can compact data",
-          "required": true,
-          "mapstructureTag": "keys"
-        }
-      ],
-      "imports": [],
-      "packageName": "groupbyattrsprocessor"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/groupbyattrsprocessor/README.md"
   },
   {
     "name": "groupbytraceprocessor",
-    "description": "This processor collects all the spans from the same trace, waiting a",
+    "description": "This processor collects all the spans from the same trace, waiting a pre-determined amount of time before releasing the trace to the next processor. The expectation is that, generally, traces will be complete after the given time.",
     "stability": "Unknown",
     "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/groupbytraceprocessor/README.md",
     "configSchema": {
@@ -320,203 +145,37 @@
   },
   {
     "name": "intervalprocessor",
-    "description": "## Description",
+    "description": "No description available",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/intervalprocessor/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "Interval",
-          "type": "time.Duration",
-          "description": "Interval is the time interval at which the processor will aggregate metrics.",
-          "required": true,
-          "mapstructureTag": "interval"
-        },
-        {
-          "name": "PassThrough",
-          "type": "PassThrough",
-          "description": "PassThrough is a configuration that determines whether gauge and summary metrics should be passed through as they are or aggregated.",
-          "required": true,
-          "mapstructureTag": "pass_through"
-        }
-      ],
-      "imports": [
-        "errors",
-        "time",
-        "go.opentelemetry.io/collector/component"
-      ],
-      "packageName": "intervalprocessor"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/intervalprocessor/README.md"
   },
   {
     "name": "k8sattributesprocessor",
     "description": "Kubernetes attributes processor allow automatic setting of spans, metrics and logs resource attributes with k8s metadata.",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/k8sattributesprocessor/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "Passthrough",
-          "type": "bool",
-          "description": "Passthrough mode only annotates resources with the pod IP and does not try to extract any other metadata. It does not need access to the K8S cluster API. Agent/Collector must receive spans directly from services to be able to correctly detect the pod IPs.",
-          "required": true,
-          "mapstructureTag": "passthrough"
-        },
-        {
-          "name": "Extract",
-          "type": "ExtractConfig",
-          "description": "Extract section allows specifying extraction rules to extract data from k8s pod specs",
-          "required": true,
-          "mapstructureTag": "extract"
-        },
-        {
-          "name": "Filter",
-          "type": "FilterConfig",
-          "description": "Filter section allows specifying filters to filter pods by labels, fields, namespaces, nodes, etc.",
-          "required": true,
-          "mapstructureTag": "filter"
-        },
-        {
-          "name": "Association",
-          "type": "[]PodAssociationConfig",
-          "description": "Association section allows to define rules for tagging spans, metrics, and logs with Pod metadata.",
-          "required": true,
-          "mapstructureTag": "pod_association"
-        },
-        {
-          "name": "Exclude",
-          "type": "ExcludeConfig",
-          "description": "Exclude section allows to define names of pod that should be ignored while tagging.",
-          "required": true,
-          "mapstructureTag": "exclude"
-        },
-        {
-          "name": "WaitForMetadata",
-          "type": "bool",
-          "description": "WaitForMetadata is a flag that determines if the processor should wait k8s metadata to be synced when starting.",
-          "required": true,
-          "mapstructureTag": "wait_for_metadata"
-        },
-        {
-          "name": "WaitForMetadataTimeout",
-          "type": "time.Duration",
-          "description": "WaitForMetadataTimeout is the maximum time the processor will wait for the k8s metadata to be synced.",
-          "required": true,
-          "mapstructureTag": "wait_for_metadata_timeout"
-        }
-      ],
-      "imports": [
-        "fmt",
-        "regexp",
-        "time",
-        "go.opentelemetry.io/collector/featuregate",
-        "conventions \"go.opentelemetry.io/collector/semconv/v1.6.1\"",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/k8sconfig",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor/internal/kube"
-      ],
-      "packageName": "k8sattributesprocessor"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/k8sattributesprocessor/README.md"
   },
   {
     "name": "logdedupprocessor",
     "description": "This processor is used to deduplicate logs by detecting identical logs over a range of time and emitting a single log with the count of logs that were deduplicated.",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/logdedupprocessor/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "LogCountAttribute",
-          "type": "string",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "log_count_attribute"
-        },
-        {
-          "name": "Interval",
-          "type": "time.Duration",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "interval"
-        },
-        {
-          "name": "Timezone",
-          "type": "string",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "timezone"
-        },
-        {
-          "name": "ExcludeFields",
-          "type": "[]string",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "exclude_fields"
-        },
-        {
-          "name": "IncludeFields",
-          "type": "[]string",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "include_fields"
-        },
-        {
-          "name": "Conditions",
-          "type": "[]string",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "conditions"
-        }
-      ],
-      "imports": [
-        "errors",
-        "fmt",
-        "strings",
-        "time",
-        "go.opentelemetry.io/collector/component"
-      ],
-      "packageName": "logdedupprocessor"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/logdedupprocessor/README.md"
   },
   {
     "name": "logstransformprocessor",
-    "description": "NOTE - This processor is experimental, with the intention that its functionality will be reimplemented in the [transform processor](../transformprocessor/README.md) in the future.",
+    "description": "NOTE - This processor is experimental, with the intention that its functionality will be reimplemented in the [transform processor](../transformprocessor/README.md) in the future. For this reason, the processor is not included in the `contrib` distribution.",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/logstransformprocessor/README.md",
-    "configSchema": {
-      "fields": [],
-      "imports": [
-        "errors",
-        "go.opentelemetry.io/collector/component",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/adapter"
-      ],
-      "packageName": "logstransformprocessor"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/logstransformprocessor/README.md"
   },
   {
     "name": "metricsgenerationprocessor",
-    "description": "## Description",
+    "description": "No description available",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/metricsgenerationprocessor/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "Rules",
-          "type": "[]Rule",
-          "description": "Set of rules for generating new metrics",
-          "required": true,
-          "mapstructureTag": "rules"
-        }
-      ],
-      "imports": [
-        "fmt",
-        "sort"
-      ],
-      "packageName": "metricsgenerationprocessor"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/metricsgenerationprocessor/README.md"
   },
   {
     "name": "metricstarttimeprocessor",
-    "description": "The metric start time processor (`metricstarttime`) is used to set the start",
+    "description": "No description available",
     "stability": "Unknown",
     "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/metricstarttimeprocessor/README.md",
     "configSchema": {
@@ -548,165 +207,25 @@
   },
   {
     "name": "metricstransformprocessor",
-    "description": "## Description",
+    "description": "No description available",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/metricstransformprocessor/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "Transforms",
-          "type": "[]transform",
-          "description": "transform specifies a list of transforms on metrics with each transform focusing on one metric.",
-          "required": true,
-          "mapstructureTag": "transforms"
-        }
-      ],
-      "imports": [],
-      "packageName": "metricstransformprocessor"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/metricstransformprocessor/README.md"
   },
   {
     "name": "probabilisticsamplerprocessor",
-    "description": "No description available",
+    "description": "The probabilistic sampler processor supports several modes of sampling for spans and log records.  Sampling is performed on a per-request basis, considering individual items statelessly.  For whole trace sampling, see [tailsamplingprocessor](../tailsamplingprocessor/README.md).",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/probabilisticsamplerprocessor/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "SamplingPercentage",
-          "type": "float32",
-          "description": "SamplingPercentage is the percentage rate at which traces or logs are going to be sampled. Defaults to zero, i.e.: no sample. Values greater or equal 100 are treated as \"sample all traces/logs\".",
-          "required": true,
-          "mapstructureTag": "sampling_percentage"
-        },
-        {
-          "name": "HashSeed",
-          "type": "uint32",
-          "description": "HashSeed allows one to configure the hashing seed. This is important in scenarios where multiple layers of collectors have different sampling rates: if they use the same seed all passing one layer may pass the other even if they have different sampling rates, configuring different seeds avoids that.",
-          "required": true,
-          "mapstructureTag": "hash_seed"
-        },
-        {
-          "name": "Mode",
-          "type": "SamplerMode",
-          "description": "Mode selects the sampling behavior. Supported values: - \"hash_seed\": the legacy behavior of this processor. Using an FNV hash combined with the HashSeed value, this sampler performs a non-consistent probabilistic downsampling.  The number of spans output is expected to equal SamplingPercentage (as a ratio) times the number of spans inpout, assuming good behavior from FNV and good entropy in the hashed attributes or TraceID. - \"equalizing\": Using an OTel-specified consistent sampling mechanism, this sampler selectively reduces the effective sampling probability of arriving spans.  This can be useful to select a small fraction of complete traces from a stream with mixed sampling rates.  The rate of spans passing through depends on how much sampling has already been applied.  If an arriving span was head sampled at the same probability it passes through.  If the span arrives with lower probability, a warning is logged because it means this sampler is configured with too large a sampling probability to ensure complete traces. - \"proportional\": Using an OTel-specified consistent sampling mechanism, this sampler reduces the effective sampling probability of each span by `SamplingProbability`.",
-          "required": true,
-          "mapstructureTag": "mode"
-        },
-        {
-          "name": "FailClosed",
-          "type": "bool",
-          "description": "FailClosed indicates to not sample data (the processor will fail \"closed\") in case of error, such as failure to parse the tracestate field or missing the randomness attribute. By default, failure cases are sampled (the processor is fails \"open\").  Sampling priority-based decisions are made after FailClosed is processed, making it possible to sample despite errors using priority.",
-          "required": true,
-          "mapstructureTag": "fail_closed"
-        },
-        {
-          "name": "SamplingPrecision",
-          "type": "int",
-          "description": "SamplingPrecision is how many hex digits of sampling threshold will be encoded, from 1 up to 14.  Default is 4. 0 is treated as full precision.",
-          "required": true,
-          "mapstructureTag": "sampling_precision"
-        },
-        {
-          "name": "FromAttribute",
-          "type": "string",
-          "description": "FromAttribute (logs only) The optional name of a log record attribute used for sampling purposes, such as a unique log record ID. The value of the attribute is only used if the trace ID is absent or if `attribute_source` is set to `record`.",
-          "required": true,
-          "mapstructureTag": "from_attribute"
-        },
-        {
-          "name": "SamplingPriority",
-          "type": "string",
-          "description": "SamplingPriority (logs only) enables using a log record attribute as the sampling priority of the log record.",
-          "required": true,
-          "mapstructureTag": "sampling_priority"
-        }
-      ],
-      "imports": [
-        "fmt",
-        "math",
-        "go.opentelemetry.io/collector/component",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/sampling"
-      ],
-      "packageName": "probabilisticsamplerprocessor"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/probabilisticsamplerprocessor/README.md"
   },
   {
     "name": "redactionprocessor",
-    "description": "This processor deletes span, log, and metric datapoint attributes that don't match a list of allowed",
+    "description": "This processor deletes span, log, and metric datapoint attributes that don't match a list of allowed attributes. It also masks attribute values that match a blocked value list. Attributes that aren't on the allowed list are removed before any value checks are done.",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/redactionprocessor/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "AllowAllKeys",
-          "type": "bool",
-          "description": "AllowAllKeys is a flag to allow all span attribute keys. Setting this to true disables the AllowedKeys list. The list of BlockedValues is applied regardless. If you just want to block values, set this to true.",
-          "required": true,
-          "mapstructureTag": "allow_all_keys"
-        },
-        {
-          "name": "AllowedKeys",
-          "type": "[]string",
-          "description": "AllowedKeys is a list of allowed span attribute keys. Span attributes not on the list are removed. The list fails closed if it's empty. To allow all keys, you should explicitly set AllowAllKeys",
-          "required": true,
-          "mapstructureTag": "allowed_keys"
-        },
-        {
-          "name": "BlockedKeyPatterns",
-          "type": "[]string",
-          "description": "BlockedKeyPatterns is a list of blocked span attribute key patterns. Span attributes matching the regexes on the list are masked.",
-          "required": true,
-          "mapstructureTag": "blocked_key_patterns"
-        },
-        {
-          "name": "HashFunction",
-          "type": "HashFunction",
-          "description": "HashFunction defines the function for hashing the values instead of masking them with a fixed string. By default, no hash function is used and masking with a fixed string is performed.",
-          "required": true,
-          "mapstructureTag": "hash_function"
-        },
-        {
-          "name": "IgnoredKeys",
-          "type": "[]string",
-          "description": "IgnoredKeys is a list of span attribute keys that are not redacted. Span attributes in this list are allowed to pass through the filter without being changed or removed.",
-          "required": true,
-          "mapstructureTag": "ignored_keys"
-        },
-        {
-          "name": "BlockedValues",
-          "type": "[]string",
-          "description": "BlockedValues is a list of regular expressions for blocking values of allowed span attributes. Values that match are masked.",
-          "required": true,
-          "mapstructureTag": "blocked_values"
-        },
-        {
-          "name": "AllowedValues",
-          "type": "[]string",
-          "description": "AllowedValues is a list of regular expressions for allowing values of blocked span attributes. Values that match are not masked.",
-          "required": true,
-          "mapstructureTag": "allowed_values"
-        },
-        {
-          "name": "Summary",
-          "type": "string",
-          "description": "Summary controls the verbosity level of the diagnostic attributes that the processor adds to the spans when it redacts or masks other attributes. In some contexts a list of redacted attributes leaks information, while it is valuable when integrating and testing a new configuration. Possible values are `debug`, `info`, and `silent`.",
-          "required": true,
-          "mapstructureTag": "summary"
-        }
-      ],
-      "imports": [
-        "encoding",
-        "errors",
-        "fmt",
-        "strings"
-      ],
-      "packageName": "redactionprocessor"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/redactionprocessor/README.md"
   },
   {
     "name": "remotetapprocessor",
-    "description": "The Remote Tap processor, which can be positioned anywhere in a pipeline, allows",
+    "description": "The Remote Tap processor, which can be positioned anywhere in a pipeline, allows data to pass through to the next component. Simultaneously, it makes a portion of the data accessible to WebSocket clients connecting on a configurable port. This functionality resembles that of the Unix `tee` command, which enables data to flow through while duplicating and redirecting it for inspection.",
     "stability": "Unknown",
     "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/remotetapprocessor/README.md",
     "configSchema": {
@@ -730,319 +249,49 @@
   },
   {
     "name": "resourcedetectionprocessor",
-    "description": "The resource detection processor can be used to detect resource information from the host,",
+    "description": "The resource detection processor can be used to detect resource information from the host, in a format that conforms to the [OpenTelemetry resource semantic conventions](https://github.com/open-telemetry/semantic-conventions/tree/main/docs/resource), and append or override the resource value in telemetry data with this information.",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/resourcedetectionprocessor/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "Detectors",
-          "type": "[]string",
-          "description": "Detectors is an ordered list of named detectors that should be run to attempt to detect resource information.",
-          "required": true,
-          "mapstructureTag": "detectors"
-        },
-        {
-          "name": "Override",
-          "type": "bool",
-          "description": "Override indicates whether any existing resource attributes should be overridden or preserved. Defaults to true.",
-          "required": true,
-          "mapstructureTag": "override"
-        },
-        {
-          "name": "DetectorConfig",
-          "type": "DetectorConfig",
-          "description": "DetectorConfig is a list of settings specific to all detectors",
-          "required": true,
-          "mapstructureTag": ",squash"
-        },
-        {
-          "name": "Attributes",
-          "type": "[]string",
-          "description": "Attributes is an allowlist of attributes to add. If a supplied attribute is not a valid attribute of a supplied detector it will be ignored. Deprecated: Please use detector's resource_attributes config instead",
-          "required": true,
-          "mapstructureTag": "attributes"
-        }
-      ],
-      "imports": [
-        "go.opentelemetry.io/collector/config/confighttp",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal/aws/ec2",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal/aws/ecs",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal/aws/eks",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal/aws/elasticbeanstalk",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal/aws/lambda",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal/azure",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal/azure/aks",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal/consul",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal/docker",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal/gcp",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal/heroku",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal/k8snode",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal/kubeadm",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal/openshift",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal/system"
-      ],
-      "packageName": "resourcedetectionprocessor"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/resourcedetectionprocessor/README.md"
   },
   {
     "name": "resourceprocessor",
-    "description": "The resource processor can be used to apply changes on resource attributes.",
+    "description": "The resource processor can be used to apply changes on resource attributes. Please refer to [config.go](./config.go) for the config spec.",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/resourceprocessor/README.md",
-    "configSchema": {
-      "fields": [],
-      "imports": [
-        "errors",
-        "go.opentelemetry.io/collector/component",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/attraction"
-      ],
-      "packageName": "resourceprocessor"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/resourceprocessor/README.md"
   },
   {
     "name": "routingprocessor",
-    "description": "## Deprecation Notice",
+    "description": "No description available",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/routingprocessor/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "DefaultExporters",
-          "type": "[]string",
-          "description": "DefaultExporters contains the list of exporters to use when a more specific record can't be found in the routing table. Optional.",
-          "required": true,
-          "mapstructureTag": "default_exporters"
-        },
-        {
-          "name": "AttributeSource",
-          "type": "AttributeSource",
-          "description": "AttributeSource defines where the attribute defined in `from_attribute` is searched for. The allowed values are: - \"context\" - the attribute must exist in the incoming context - \"resource\" - the attribute must exist in resource attributes The default value is \"context\". Optional.",
-          "required": true,
-          "mapstructureTag": "attribute_source"
-        },
-        {
-          "name": "FromAttribute",
-          "type": "string",
-          "description": "FromAttribute contains the attribute name to look up the route value. This attribute should be part of the context propagated down from the previous receivers and/or processors. If all the receivers and processors are propagating the entire context correctly, this could be the HTTP/gRPC header from the original request/RPC. Typically, aggregation processors (batch, groupbytrace) will create a new context, so, those should be avoided when using this processor.Although the HTTP spec allows headers to be repeated, this processor will only use the first value. Required.",
-          "required": true,
-          "mapstructureTag": "from_attribute"
-        },
-        {
-          "name": "DropRoutingResourceAttribute",
-          "type": "bool",
-          "description": "DropRoutingResourceAttribute controls whether to remove the resource attribute used for routing. This is only relevant if AttributeSource is set to resource. Optional.",
-          "required": true,
-          "mapstructureTag": "drop_resource_routing_attribute"
-        },
-        {
-          "name": "ErrorMode",
-          "type": "ottl.ErrorMode",
-          "description": "ErrorMode determines how the processor reacts to errors that occur while processing an OTTL condition. Valid values are `ignore` and `propagate`. `ignore` means the processor ignores errors returned by conditions and continues on to the next condition. This is the recommended mode. If `ignored` is used and a statement's condition has an error then the payload will be routed to the default exporter. `propagate` means the processor returns the error up the pipeline.  This will result in the payload being dropped from the collector. The default value is `propagate`.",
-          "required": true,
-          "mapstructureTag": "error_mode"
-        },
-        {
-          "name": "Table",
-          "type": "[]RoutingTableItem",
-          "description": "Table contains the routing table for this processor. Required.",
-          "required": true,
-          "mapstructureTag": "table"
-        }
-      ],
-      "imports": [
-        "errors",
-        "fmt",
-        "strings",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl"
-      ],
-      "packageName": "routingprocessor"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/routingprocessor/README.md"
   },
   {
     "name": "schemaprocessor",
-    "description": "The _Schema Processor_ is used to convert existing telemetry data or signals to a version of the semantic convention defined as part of the configuration.",
+    "description": "The _Schema Processor_ is used to convert existing telemetry data or signals to a version of the semantic convention defined as part of the configuration. The processor works by using a set of target schema URLs that are used to match incoming signals. On a match, the processor will fetch the schema translation file (if not cached) set by the incoming signal and apply the transformations required to export as the target semantic convention version.",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/schemaprocessor/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "Prefetch",
-          "type": "[]string",
-          "description": "PreCache is a list of schema URLs that are downloaded and cached at the start of the collector runtime in order to avoid fetching data that later on could block processing of signals. (Optional field)",
-          "required": true,
-          "mapstructureTag": "prefetch"
-        },
-        {
-          "name": "Targets",
-          "type": "[]string",
-          "description": "Targets define what schema families should be translated to, allowing older and newer formats to conform to the target schema identifier.",
-          "required": true,
-          "mapstructureTag": "targets"
-        }
-      ],
-      "imports": [
-        "errors",
-        "fmt",
-        "go.opentelemetry.io/collector/config/confighttp",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/processor/schemaprocessor/internal/translation"
-      ],
-      "packageName": "schemaprocessor"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/schemaprocessor/README.md"
   },
   {
     "name": "spanprocessor",
-    "description": "The span processor modifies the span name based on its attributes or extract span attributes from the span name. It also allows",
+    "description": "The span processor modifies the span name based on its attributes or extract span attributes from the span name. It also allows to change span status. Please refer to [config.go](./config.go) for the config spec.",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/spanprocessor/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "Rename",
-          "type": "Name",
-          "description": "Rename specifies the components required to re-name a span. The `from_attributes` field needs to be set for this processor to be properly configured. Note: The field name is `Rename` to avoid collision with the Name() method from config.NamedEntity",
-          "required": true,
-          "mapstructureTag": "name"
-        },
-        {
-          "name": "SetStatus",
-          "type": "*Status",
-          "description": "SetStatus specifies status which should be set for this span.",
-          "required": true,
-          "mapstructureTag": "status"
-        }
-      ],
-      "imports": [
-        "go.opentelemetry.io/collector/component",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/filter/filterconfig"
-      ],
-      "packageName": "spanprocessor"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/spanprocessor/README.md"
   },
   {
     "name": "sumologicprocessor",
-    "description": "The Sumo Logic processor (config name: `sumologic`)",
+    "description": "The Sumo Logic processor (config name: `sumologic`) modifies the metadata on logs, metrics and traces sent to [Sumo Logic][sumologic_webpage] so that the Sumo Logic [apps][sumologic_apps] can make full use of the ingested data.",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/sumologicprocessor/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "AddCloudNamespace",
-          "type": "bool",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "add_cloud_namespace"
-        },
-        {
-          "name": "TranslateAttributes",
-          "type": "bool",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "translate_attributes"
-        },
-        {
-          "name": "TranslateTelegrafAttributes",
-          "type": "bool",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "translate_telegraf_attributes"
-        },
-        {
-          "name": "NestAttributes",
-          "type": "*NestingProcessorConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "nest_attributes"
-        },
-        {
-          "name": "AggregateAttributes",
-          "type": "[]aggregationPair",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "aggregate_attributes"
-        },
-        {
-          "name": "LogFieldsAttributes",
-          "type": "*logFieldAttributesConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "field_attributes"
-        },
-        {
-          "name": "TranslateDockerMetrics",
-          "type": "bool",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "translate_docker_metrics"
-        }
-      ],
-      "imports": [
-        "go.opentelemetry.io/collector/component"
-      ],
-      "packageName": "sumologicprocessor"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/sumologicprocessor/README.md"
   },
   {
     "name": "tailsamplingprocessor",
-    "description": "The tail sampling processor samples traces based on a set of defined policies. All spans for a given trace MUST be received by the same collector instance for effective sampling decisions.",
+    "description": "The tail sampling processor samples traces based on a set of defined policies. All spans for a given trace MUST be received by the same collector instance for effective sampling decisions. Before performing sampling, spans will be grouped by `trace_id`. Therefore, the tail sampling processor can be used directly without the need for the [`groupbytraceprocessor`](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/groupbytraceprocessor).",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/tailsamplingprocessor/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "DecisionWait",
-          "type": "time.Duration",
-          "description": "DecisionWait is the desired wait time from the arrival of the first span of trace until the decision about sampling it or not is evaluated.",
-          "required": true,
-          "mapstructureTag": "decision_wait"
-        },
-        {
-          "name": "NumTraces",
-          "type": "uint64",
-          "description": "NumTraces is the number of traces kept on memory. Typically most of the data of a trace is released after a sampling decision is taken.",
-          "required": true,
-          "mapstructureTag": "num_traces"
-        },
-        {
-          "name": "ExpectedNewTracesPerSec",
-          "type": "uint64",
-          "description": "ExpectedNewTracesPerSec sets the expected number of new traces sending to the tail sampling processor per second. This helps with allocating data structures with closer to actual usage size.",
-          "required": true,
-          "mapstructureTag": "expected_new_traces_per_sec"
-        },
-        {
-          "name": "PolicyCfgs",
-          "type": "[]PolicyCfg",
-          "description": "PolicyCfgs sets the tail-based sampling policy which makes a sampling decision for a given trace when requested.",
-          "required": true,
-          "mapstructureTag": "policies"
-        },
-        {
-          "name": "DecisionCache",
-          "type": "DecisionCacheConfig",
-          "description": "DecisionCache holds configuration for the decision cache(s)",
-          "required": true,
-          "mapstructureTag": "decision_cache"
-        },
-        {
-          "name": "Options",
-          "type": "[]Option",
-          "description": "Options allows for additional configuration of the tail-based sampling processor in code.",
-          "required": true,
-          "mapstructureTag": "-"
-        }
-      ],
-      "imports": [
-        "time",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl"
-      ],
-      "packageName": "tailsamplingprocessor"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/tailsamplingprocessor/README.md"
   },
   {
     "name": "transformprocessor",
-    "description": "> [!NOTE]",
+    "description": "> [!NOTE] > This documentation applies only to version `0.120.0` and later. **Configuration from previous version is still supported**, but no longer documented in this README. For information on earlier versions, please refer to the previous [documentation](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/release/0.119.x/processor/transformprocessor/README.md).",
     "stability": "Unknown",
     "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/transformprocessor/README.md",
     "configSchema": {

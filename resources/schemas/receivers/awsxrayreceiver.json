@@ -3,7 +3,7 @@
     {
       "name": "ProxyServer",
       "type": "*proxy.Config",
-      "description": "ProxyServer defines configurations related to the local TCP proxy server.",
+      "description": "The `NetAddr` represents the UDP address and port on which this receiver listens for X-Ray segment documents emitted by the X-Ray SDK. ProxyServer defines configurations related to the local TCP proxy server.",
       "required": true,
       "mapstructureTag": "proxy_server"
     }

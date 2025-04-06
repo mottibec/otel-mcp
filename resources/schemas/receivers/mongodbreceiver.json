@@ -3,7 +3,7 @@
     {
       "name": "Hosts",
       "type": "[]confignet.TCPAddrConfig",
-      "description": "Deprecated - Transport option will be removed in v0.102.0",
+      "description": "MetricsBuilderConfig defines which metrics/attributes to enable for the scraper Deprecated - Transport option will be removed in v0.102.0",
       "required": true,
       "mapstructureTag": "hosts"
     },

@@ -10,7 +10,7 @@
     {
       "name": "Format",
       "type": "string",
-      "description": "",
+      "description": "Configures the exporter client. The Endpoint to send the Zipkin trace data to (e.g.: http://some.url:9411/api/v2/spans).",
       "required": true,
       "mapstructureTag": "format"
     },

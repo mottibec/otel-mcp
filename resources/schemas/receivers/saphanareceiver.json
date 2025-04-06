@@ -3,7 +3,7 @@
     {
       "name": "Username",
       "type": "string",
-      "description": "",
+      "description": "MetricsBuilderConfig defines which metrics/attributes to enable for the scraper",
       "required": true,
       "mapstructureTag": "username"
     },

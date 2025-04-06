@@ -3,411 +3,53 @@
     "name": "alertmanagerexporter",
     "description": "Exports OTEL Events (SpanEvent in Tracing added by AddEvent API) as Alerts to [Alertmanager](https://prometheus.io/docs/alerting/latest/alertmanager/) back-end to notify Errors or Change events.",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/alertmanagerexporter/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "TimeoutSettings",
-          "type": "exporterhelper.TimeoutConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": ",squash"
-        },
-        {
-          "name": "QueueSettings",
-          "type": "exporterhelper.QueueBatchConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "sending_queue"
-        },
-        {
-          "name": "BackoffConfig",
-          "type": "configretry.BackOffConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "retry_on_failure"
-        },
-        {
-          "name": "GeneratorURL",
-          "type": "string",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "generator_url"
-        },
-        {
-          "name": "DefaultSeverity",
-          "type": "string",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "severity"
-        },
-        {
-          "name": "SeverityAttribute",
-          "type": "string",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "severity_attribute"
-        }
-      ],
-      "imports": [
-        "errors",
-        "go.opentelemetry.io/collector/component",
-        "go.opentelemetry.io/collector/config/confighttp",
-        "go.opentelemetry.io/collector/config/configretry",
-        "go.opentelemetry.io/collector/exporter/exporterhelper"
-      ],
-      "packageName": "alertmanagerexporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/alertmanagerexporter/README.md"
   },
   {
     "name": "alibabacloudlogserviceexporter",
     "description": "This exporter supports sending OpenTelemetry data to [LogService](https://www.alibabacloud.com/product/log-service).",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/alibabacloudlogserviceexporter/README.md",
-    "configSchema": {
-      "fields": [],
-      "imports": [],
-      "packageName": "alibabacloudlogserviceexporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/alibabacloudlogserviceexporter/README.md"
   },
   {
     "name": "awscloudwatchlogsexporter",
-    "description": "AWS CloudWatch Logs Exporter sends logs data to AWS [CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html).",
+    "description": "AWS CloudWatch Logs Exporter sends logs data to AWS [CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html). AWS credentials are retrieved from the [default credential chain](https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials).",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/awscloudwatchlogsexporter/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "LogGroupName",
-          "type": "string",
-          "description": "LogGroupName is the name of CloudWatch log group which defines group of log streams that share the same retention, monitoring, and access control settings.",
-          "required": true,
-          "mapstructureTag": "log_group_name"
-        },
-        {
-          "name": "LogStreamName",
-          "type": "string",
-          "description": "LogStreamName is the name of CloudWatch log stream which is a sequence of log events that share the same source.",
-          "required": true,
-          "mapstructureTag": "log_stream_name"
-        },
-        {
-          "name": "Endpoint",
-          "type": "string",
-          "description": "Endpoint is the CloudWatch Logs service endpoint which the requests are forwarded to. https://docs.aws.amazon.com/general/latest/gr/cwl_region.html e.g. logs.us-east-1.amazonaws.com Optional.",
-          "required": true,
-          "mapstructureTag": "endpoint"
-        },
-        {
-          "name": "LogRetention",
-          "type": "int64",
-          "description": "LogRetention is the option to set the log retention policy for the CloudWatch Log Group. Defaults to Never Expire if not specified or set to 0 Possible values are 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, 2192, 2557, 2922, 3288, or 3653",
-          "required": true,
-          "mapstructureTag": "log_retention"
-        }
-      ],
-      "imports": [
-        "errors",
-        "go.opentelemetry.io/collector/component",
-        "go.opentelemetry.io/collector/config/configretry",
-        "go.opentelemetry.io/collector/exporter/exporterhelper",
-        "go.uber.org/zap",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/awsutil",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/cwlogs"
-      ],
-      "packageName": "awscloudwatchlogsexporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/awscloudwatchlogsexporter/README.md"
   },
   {
     "name": "awsemfexporter",
-    "description": "This exporter converts OpenTelemetry metrics to",
+    "description": "This exporter converts OpenTelemetry metrics to [AWS CloudWatch Embedded Metric Format(EMF)](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Embedded_Metric_Format_Specification.html) and then sends them directly to CloudWatch Logs using the [PutLogEvents](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutLogEvents.html) API.",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/awsemfexporter/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "LogGroupName",
-          "type": "string",
-          "description": "LogGroupName is the name of CloudWatch log group which defines group of log streams that share the same retention, monitoring, and access control settings.",
-          "required": true,
-          "mapstructureTag": "log_group_name"
-        },
-        {
-          "name": "LogStreamName",
-          "type": "string",
-          "description": "LogStreamName is the name of CloudWatch log stream which is a sequence of log events that share the same source.",
-          "required": true,
-          "mapstructureTag": "log_stream_name"
-        },
-        {
-          "name": "Namespace",
-          "type": "string",
-          "description": "Namespace is a container for CloudWatch metrics. Metrics in different namespaces are isolated from each other.",
-          "required": true,
-          "mapstructureTag": "namespace"
-        },
-        {
-          "name": "RetainInitialValueOfDeltaMetric",
-          "type": "bool",
-          "description": "RetainInitialValueOfDeltaMetric is the flag to signal that the initial value of a metric is a valid datapoint. The default behavior is that the first value occurrence of a metric is set as the baseline for the calculation of the delta to the next occurrence. With this flag set to true the exporter will instead use this first value as the initial delta value. This is especially useful when handling low frequency metrics.",
-          "required": true,
-          "mapstructureTag": "retain_initial_value_of_delta_metric"
-        },
-        {
-          "name": "DimensionRollupOption",
-          "type": "string",
-          "description": "DimensionRollupOption is the option for metrics dimension rollup. Three options are available, default option is \"ZeroAndSingleDimensionRollup\". \"ZeroAndSingleDimensionRollup\" - Enable both zero dimension rollup and single dimension rollup \"SingleDimensionRollupOnly\" - Enable single dimension rollup \"NoDimensionRollup\" - No dimension rollup (only keep original metrics which contain all dimensions)",
-          "required": true,
-          "mapstructureTag": "dimension_rollup_option"
-        },
-        {
-          "name": "LogRetention",
-          "type": "int64",
-          "description": "LogRetention is the option to set the log retention policy for the CloudWatch Log Group. Defaults to Never Expire if not specified or set to 0 Possible values are 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, 2192, 2557, 2922, 3288, or 3653",
-          "required": true,
-          "mapstructureTag": "log_retention"
-        }
-      ],
-      "imports": [
-        "strings",
-        "go.opentelemetry.io/collector/component",
-        "go.uber.org/zap",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/awsutil",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/cwlogs",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/resourcetotelemetry"
-      ],
-      "packageName": "awsemfexporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/awsemfexporter/README.md"
   },
   {
     "name": "awskinesisexporter",
-    "description": "The kinesis exporter currently exports dynamic encodings to the configured kinesis stream.",
+    "description": "The kinesis exporter currently exports dynamic encodings to the configured kinesis stream. The exporter relies heavily on the kinesis.PutRecords api to reduce network I/O and reduces records into smallest atomic representation to avoid hitting the hard limits placed on Records (No greater than 1Mb). This producer will block until the operation is done to allow for retryable and queued data to help during high loads.",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/awskinesisexporter/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "TimeoutSettings",
-          "type": "exporterhelper.TimeoutConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": ",squash"
-        },
-        {
-          "name": "QueueSettings",
-          "type": "exporterhelper.QueueBatchConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "sending_queue"
-        },
-        {
-          "name": "Encoding",
-          "type": "",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "encoding"
-        },
-        {
-          "name": "AWS",
-          "type": "AWSConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "aws"
-        },
-        {
-          "name": "MaxRecordsPerBatch",
-          "type": "int",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "max_records_per_batch"
-        },
-        {
-          "name": "MaxRecordSize",
-          "type": "int",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "max_record_size"
-        }
-      ],
-      "imports": [
-        "fmt",
-        "go.opentelemetry.io/collector/component",
-        "go.opentelemetry.io/collector/config/configretry",
-        "go.opentelemetry.io/collector/exporter/exporterhelper"
-      ],
-      "packageName": "awskinesisexporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/awskinesisexporter/README.md"
   },
   {
     "name": "awss3exporter",
-    "description": "## Schema supported",
+    "description": "No description available",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/awss3exporter/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "QueueSettings",
-          "type": "exporterhelper.QueueBatchConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "sending_queue"
-        },
-        {
-          "name": "TimeoutSettings",
-          "type": "exporterhelper.TimeoutConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": ",squash"
-        },
-        {
-          "name": "S3Uploader",
-          "type": "S3UploaderConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "s3uploader"
-        },
-        {
-          "name": "MarshalerName",
-          "type": "MarshalerType",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "marshaler"
-        },
-        {
-          "name": "Encoding",
-          "type": "*component.ID",
-          "description": "Encoding to apply. If present, overrides the marshaler configuration option.",
-          "required": true,
-          "mapstructureTag": "encoding"
-        },
-        {
-          "name": "EncodingFileExtension",
-          "type": "string",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "encoding_file_extension"
-        }
-      ],
-      "imports": [
-        "errors",
-        "go.opentelemetry.io/collector/component",
-        "go.opentelemetry.io/collector/config/configcompression",
-        "go.opentelemetry.io/collector/exporter/exporterhelper",
-        "go.uber.org/multierr"
-      ],
-      "packageName": "awss3exporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/awss3exporter/README.md"
   },
   {
     "name": "awsxrayexporter",
-    "description": "This exporter converts OpenTelemetry spans to",
+    "description": "This exporter converts OpenTelemetry spans to [AWS X-Ray Segment Documents](https://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html) and then sends them directly to X-Ray using the [PutTraceSegments](https://docs.aws.amazon.com/xray/latest/api/API_PutTraceSegments.html) API.",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/awsxrayexporter/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "IndexedAttributes",
-          "type": "[]string",
-          "description": "By default, OpenTelemetry attributes are converted to X-Ray metadata, which are not indexed. Specify a list of attribute names to be converted to X-Ray annotations instead, which will be indexed. See annotation vs. metadata: https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-annotations",
-          "required": true,
-          "mapstructureTag": "indexed_attributes"
-        },
-        {
-          "name": "IndexAllAttributes",
-          "type": "bool",
-          "description": "Set to true to convert all OpenTelemetry attributes to X-Ray annotation (indexed) ignoring the IndexedAttributes option. Default value: false",
-          "required": true,
-          "mapstructureTag": "index_all_attributes"
-        },
-        {
-          "name": "LogGroupNames",
-          "type": "[]string",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "aws_log_groups"
-        },
-        {
-          "name": "TelemetryConfig",
-          "type": "telemetry.Config",
-          "description": "TelemetryConfig contains the options for telemetry collection.",
-          "required": false,
-          "mapstructureTag": "telemetry,omitempty"
-        },
-        {
-          "name": "skipTimestampValidation",
-          "type": "bool",
-          "description": "skipTimestampValidation if enabled, will skip timestamp validation logic on the trace ID",
-          "required": true
-        }
-      ],
-      "imports": [
-        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/awsutil",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/xray/telemetry"
-      ],
-      "packageName": "awsxrayexporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/awsxrayexporter/README.md"
   },
   {
     "name": "azureblobexporter",
-    "description": "## Configuration",
+    "description": "No description available",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/azureblobexporter/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "URL",
-          "type": "string",
-          "description": "URL is the endpoint to the azure storage account. This is only required until there is an azure auth extension in the future.",
-          "required": true,
-          "mapstructureTag": "url"
-        },
-        {
-          "name": "Container",
-          "type": "*Container",
-          "description": "A container organizes a set of blobs, similar to a directory in a file system.",
-          "required": true,
-          "mapstructureTag": "container"
-        },
-        {
-          "name": "Auth",
-          "type": "*Authentication",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "auth"
-        },
-        {
-          "name": "BlobNameFormat",
-          "type": "*BlobNameFormat",
-          "description": "BlobNameFormat is the format of the blob name. It controls the uploaded blob name, e.g. \"2006/01/02/metrics_15_04_05.json\"",
-          "required": true,
-          "mapstructureTag": "blob_name_format"
-        },
-        {
-          "name": "FormatType",
-          "type": "string",
-          "description": "FormatType is the format of encoded telemetry data. Supported values are json and proto.",
-          "required": true,
-          "mapstructureTag": "format"
-        },
-        {
-          "name": "Encodings",
-          "type": "*Encodings",
-          "description": "Encoding extension to apply for logs/metrics/traces. If present, overrides the marshaler configuration option and format.",
-          "required": true,
-          "mapstructureTag": "encodings"
-        }
-      ],
-      "imports": [
-        "errors",
-        "go.opentelemetry.io/collector/component",
-        "go.opentelemetry.io/collector/config/configretry"
-      ],
-      "packageName": "azureblobexporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/azureblobexporter/README.md"
   },
   {
     "name": "azuredataexplorerexporter",
-    "description": "This exporter sends metrics, logs and trace data to",
+    "description": "This exporter sends metrics, logs and trace data to [Azure Data Explorer](https://docs.microsoft.com/en-us/azure/data-explorer), [Azure Synapse Data Explorer](https://docs.microsoft.com/en-us/azure/synapse-analytics/data-explorer/data-explorer-overview) and [Real time analytics in Fabric](https://learn.microsoft.com/en-us/fabric/real-time-analytics/overview)",
     "stability": "Unknown",
     "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/azuredataexplorerexporter/README.md",
     "configSchema": {
@@ -649,7 +291,7 @@
   },
   {
     "name": "carbonexporter",
-    "description": "The [Carbon](https://github.com/graphite-project/carbon) exporter supports",
+    "description": "The [Carbon](https://github.com/graphite-project/carbon) exporter supports Carbon's [plaintext protocol](https://graphite.readthedocs.io/en/stable/feeding-carbon.html#the-plaintext-protocol).",
     "stability": "Unknown",
     "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/carbonexporter/README.md",
     "configSchema": {
@@ -657,7 +299,7 @@
         {
           "name": "MaxIdleConns",
           "type": "int",
-          "description": "MaxIdleConns is used to set a limit to the maximum idle TCP connections the client can keep open. Default value is 100. If `sending_queue` is enabled, it is recommended to use same value as `sending_queue::num_consumers`.",
+          "description": "Specifies the connection endpoint config. The default value is \"localhost:2003\". MaxIdleConns is used to set a limit to the maximum idle TCP connections the client can keep open. Default value is 100. If `sending_queue` is enabled, it is recommended to use same value as `sending_queue::num_consumers`.",
           "required": true,
           "mapstructureTag": "max_idle_conns"
         },
@@ -704,348 +346,21 @@
   },
   {
     "name": "cassandraexporter",
-    "description": "## Configuration options",
+    "description": "No description available",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/cassandraexporter/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "Auth",
-          "type": "Auth",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "auth"
-        },
-        {
-          "name": "DSN",
-          "type": "string",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "dsn"
-        },
-        {
-          "name": "Keyspace",
-          "type": "string",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "keyspace"
-        },
-        {
-          "name": "TraceTable",
-          "type": "string",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "trace_table"
-        },
-        {
-          "name": "LogsTable",
-          "type": "string",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "logs_table"
-        },
-        {
-          "name": "Compression",
-          "type": "Compression",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "compression"
-        },
-        {
-          "name": "Replication",
-          "type": "Replication",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "replication"
-        },
-        {
-          "name": "Port",
-          "type": "int",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "port"
-        },
-        {
-          "name": "Timeout",
-          "type": "time.Duration",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "timeout"
-        }
-      ],
-      "imports": [
-        "time",
-        "go.opentelemetry.io/collector/config/configopaque"
-      ],
-      "packageName": "cassandraexporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/cassandraexporter/README.md"
   },
   {
     "name": "clickhouseexporter",
-    "description": "This exporter supports sending OpenTelemetry data to [ClickHouse](https://clickhouse.com/).",
+    "description": "This exporter supports sending OpenTelemetry data to [ClickHouse](https://clickhouse.com/). > ClickHouse is an open-source, high performance columnar OLAP database management system for real-time analytics using > SQL. > Throughput can be measured in rows per second or megabytes per second. > If the data is placed in the page cache, a query that is not too complex is processed on modern hardware at a speed of > approximately 2-10 GB/s of uncompressed data on a single server. > If 10 bytes of columns are extracted, the speed is expected to be around 100-200 million rows per second.",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/clickhouseexporter/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "collectorVersion",
-          "type": "string",
-          "description": "collectorVersion is the build version of the collector. This is overridden when an exporter is initialized.",
-          "required": true
-        },
-        {
-          "name": "TimeoutSettings",
-          "type": "exporterhelper.TimeoutConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": ",squash"
-        },
-        {
-          "name": "QueueSettings",
-          "type": "exporterhelper.QueueBatchConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "sending_queue"
-        },
-        {
-          "name": "Endpoint",
-          "type": "string",
-          "description": "Endpoint is the clickhouse endpoint.",
-          "required": true,
-          "mapstructureTag": "endpoint"
-        },
-        {
-          "name": "Username",
-          "type": "string",
-          "description": "Username is the authentication username.",
-          "required": true,
-          "mapstructureTag": "username"
-        },
-        {
-          "name": "Password",
-          "type": "configopaque.String",
-          "description": "Password is the authentication password.",
-          "required": true,
-          "mapstructureTag": "password"
-        },
-        {
-          "name": "Database",
-          "type": "string",
-          "description": "Database is the database name to export.",
-          "required": true,
-          "mapstructureTag": "database"
-        },
-        {
-          "name": "ConnectionParams",
-          "type": "map[string]string",
-          "description": "ConnectionParams is the extra connection parameters with map format. for example compression/dial_timeout",
-          "required": true,
-          "mapstructureTag": "connection_params"
-        },
-        {
-          "name": "LogsTableName",
-          "type": "string",
-          "description": "LogsTableName is the table name for logs. default is `otel_logs`.",
-          "required": true,
-          "mapstructureTag": "logs_table_name"
-        },
-        {
-          "name": "TracesTableName",
-          "type": "string",
-          "description": "TracesTableName is the table name for traces. default is `otel_traces`.",
-          "required": true,
-          "mapstructureTag": "traces_table_name"
-        },
-        {
-          "name": "MetricsTableName",
-          "type": "string",
-          "description": "MetricsTableName is the table name for metrics. default is `otel_metrics`. Deprecated: MetricsTableName exists for historical compatibility and should not be used. To set the metrics tables name, use the MetricsTables parameter instead.",
-          "required": true,
-          "mapstructureTag": "metrics_table_name"
-        },
-        {
-          "name": "TTL",
-          "type": "time.Duration",
-          "description": "TTL is The data time-to-live example 30m, 48h. 0 means no ttl.",
-          "required": true,
-          "mapstructureTag": "ttl"
-        },
-        {
-          "name": "TableEngine",
-          "type": "TableEngine",
-          "description": "TableEngine is the table engine to use. default is `MergeTree()`.",
-          "required": true,
-          "mapstructureTag": "table_engine"
-        },
-        {
-          "name": "ClusterName",
-          "type": "string",
-          "description": "ClusterName if set will append `ON CLUSTER` with the provided name when creating tables.",
-          "required": true,
-          "mapstructureTag": "cluster_name"
-        },
-        {
-          "name": "CreateSchema",
-          "type": "bool",
-          "description": "CreateSchema if set to true will run the DDL for creating the database and tables. default is true.",
-          "required": true,
-          "mapstructureTag": "create_schema"
-        },
-        {
-          "name": "Compress",
-          "type": "string",
-          "description": "Compress controls the compression algorithm. Valid options: `none` (disabled), `zstd`, `lz4` (default), `gzip`, `deflate`, `br`, `true` (lz4).",
-          "required": true,
-          "mapstructureTag": "compress"
-        },
-        {
-          "name": "AsyncInsert",
-          "type": "bool",
-          "description": "AsyncInsert if true will enable async inserts. Default is `true`. Ignored if async inserts are configured in the `endpoint` or `connection_params`. Async inserts may still be overridden server-side.",
-          "required": true,
-          "mapstructureTag": "async_insert"
-        },
-        {
-          "name": "MetricsTables",
-          "type": "MetricTablesConfig",
-          "description": "MetricsTables defines the table names for metric types.",
-          "required": true,
-          "mapstructureTag": "metrics_tables"
-        }
-      ],
-      "imports": [
-        "database/sql",
-        "errors",
-        "fmt",
-        "net/url",
-        "time",
-        "github.com/ClickHouse/clickhouse-go/v2",
-        "go.opentelemetry.io/collector/config/configopaque",
-        "go.opentelemetry.io/collector/config/configretry",
-        "go.opentelemetry.io/collector/exporter/exporterhelper",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/clickhouseexporter/internal"
-      ],
-      "packageName": "clickhouseexporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/clickhouseexporter/README.md"
   },
   {
     "name": "coralogixexporter",
     "description": "The Coralogix exporter sends traces, metrics and logs to [Coralogix](https://coralogix.com/).",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/coralogixexporter/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "QueueSettings",
-          "type": "exporterhelper.QueueBatchConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "sending_queue"
-        },
-        {
-          "name": "TimeoutSettings",
-          "type": "exporterhelper.TimeoutConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": ",squash"
-        },
-        {
-          "name": "Domain",
-          "type": "string",
-          "description": "Coralogix domain",
-          "required": true,
-          "mapstructureTag": "domain"
-        },
-        {
-          "name": "DomainSettings",
-          "type": "configgrpc.ClientConfig",
-          "description": "GRPC Settings used with Domain",
-          "required": true,
-          "mapstructureTag": "domain_settings"
-        },
-        {
-          "name": "Traces",
-          "type": "configgrpc.ClientConfig",
-          "description": "Coralogix traces ingress endpoint",
-          "required": true,
-          "mapstructureTag": "traces"
-        },
-        {
-          "name": "Metrics",
-          "type": "configgrpc.ClientConfig",
-          "description": "The Coralogix metrics ingress endpoint",
-          "required": true,
-          "mapstructureTag": "metrics"
-        },
-        {
-          "name": "Logs",
-          "type": "configgrpc.ClientConfig",
-          "description": "The Coralogix logs ingress endpoint",
-          "required": true,
-          "mapstructureTag": "logs"
-        },
-        {
-          "name": "Profiles",
-          "type": "configgrpc.ClientConfig",
-          "description": "The Coralogix profiles ingress endpoint",
-          "required": true,
-          "mapstructureTag": "profiles"
-        },
-        {
-          "name": "PrivateKey",
-          "type": "configopaque.String",
-          "description": "Your Coralogix private key (sensitive) for authentication",
-          "required": true,
-          "mapstructureTag": "private_key"
-        },
-        {
-          "name": "AppNameAttributes",
-          "type": "[]string",
-          "description": "Ordered list of Resource attributes that are used for Coralogix AppName and SubSystem values. The first non-empty Resource attribute is used. Example: AppNameAttributes: [\"k8s.namespace.name\", \"service.namespace\"] Example: SubSystemAttributes: [\"k8s.deployment.name\", \"k8s.daemonset.name\", \"service.name\"]",
-          "required": true,
-          "mapstructureTag": "application_name_attributes"
-        },
-        {
-          "name": "SubSystemAttributes",
-          "type": "[]string",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "subsystem_name_attributes"
-        },
-        {
-          "name": "AppName",
-          "type": "string",
-          "description": "Default Coralogix application and subsystem name values.",
-          "required": true,
-          "mapstructureTag": "application_name"
-        },
-        {
-          "name": "SubSystem",
-          "type": "string",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "subsystem_name"
-        },
-        {
-          "name": "BatcherConfig",
-          "type": "exporterbatcher.Config",
-          "description": "Reference: https://github.com/open-telemetry/opentelemetry-collector/issues/8122",
-          "required": true,
-          "mapstructureTag": "batcher"
-        }
-      ],
-      "imports": [
-        "errors",
-        "fmt",
-        "go.opentelemetry.io/collector/config/configgrpc",
-        "go.opentelemetry.io/collector/config/configopaque",
-        "go.opentelemetry.io/collector/config/configretry",
-        "go.opentelemetry.io/collector/exporter/exporterbatcher",
-        "go.opentelemetry.io/collector/exporter/exporterhelper",
-        "go.opentelemetry.io/collector/pdata/pcommon"
-      ],
-      "packageName": "coralogixexporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/coralogixexporter/README.md"
   },
   {
     "name": "datadogexporter",
@@ -1057,375 +372,19 @@
     "name": "datasetexporter",
     "description": "This exporter sends logs to [DataSet](https://www.dataset.com/).",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/datasetexporter/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "DatasetURL",
-          "type": "string",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "dataset_url"
-        },
-        {
-          "name": "APIKey",
-          "type": "configopaque.String",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "api_key"
-        },
-        {
-          "name": "Debug",
-          "type": "bool",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "debug"
-        },
-        {
-          "name": "BufferSettings",
-          "type": "",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "buffer"
-        },
-        {
-          "name": "TracesSettings",
-          "type": "",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "traces"
-        },
-        {
-          "name": "LogsSettings",
-          "type": "",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "logs"
-        },
-        {
-          "name": "ServerHostSettings",
-          "type": "",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "server_host"
-        },
-        {
-          "name": "QueueSettings",
-          "type": "exporterhelper.QueueBatchConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "sending_queue"
-        },
-        {
-          "name": "TimeoutSettings",
-          "type": "exporterhelper.TimeoutConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "timeout"
-        }
-      ],
-      "imports": [
-        "fmt",
-        "time",
-        "github.com/cenkalti/backoff/v4",
-        "github.com/scalyr/dataset-go/pkg/buffer",
-        "github.com/scalyr/dataset-go/pkg/buffer_config",
-        "datasetConfig \"github.com/scalyr/dataset-go/pkg/config\"",
-        "github.com/scalyr/dataset-go/pkg/server_host_config",
-        "go.opentelemetry.io/collector/config/configopaque",
-        "go.opentelemetry.io/collector/config/configretry",
-        "go.opentelemetry.io/collector/confmap",
-        "go.opentelemetry.io/collector/exporter/exporterhelper"
-      ],
-      "packageName": "datasetexporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/datasetexporter/README.md"
   },
   {
     "name": "dorisexporter",
     "description": "This exporter supports sending traces, metrics, and logs data to [Apache Doris](https://doris.apache.org/) (version >= 2.1.1).",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/dorisexporter/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "QueueSettings",
-          "type": "exporterhelper.QueueBatchConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "sending_queue"
-        },
-        {
-          "name": "Database",
-          "type": "string",
-          "description": "Database is the database name.",
-          "required": true,
-          "mapstructureTag": "database"
-        },
-        {
-          "name": "Username",
-          "type": "string",
-          "description": "Username is the authentication username.",
-          "required": true,
-          "mapstructureTag": "username"
-        },
-        {
-          "name": "Password",
-          "type": "configopaque.String",
-          "description": "Password is the authentication password.",
-          "required": true,
-          "mapstructureTag": "password"
-        },
-        {
-          "name": "CreateSchema",
-          "type": "bool",
-          "description": "CreateSchema is whether databases and tables are created automatically.",
-          "required": true,
-          "mapstructureTag": "create_schema"
-        },
-        {
-          "name": "MySQLEndpoint",
-          "type": "string",
-          "description": "MySQLEndpoint is the mysql protocol address to create the schema; ignored if create_schema is false.",
-          "required": true,
-          "mapstructureTag": "mysql_endpoint"
-        },
-        {
-          "name": "HistoryDays",
-          "type": "int32",
-          "description": "Data older than these days will be deleted; ignored if create_schema is false. If set to 0, historical data will not be deleted.",
-          "required": true,
-          "mapstructureTag": "history_days"
-        },
-        {
-          "name": "CreateHistoryDays",
-          "type": "int32",
-          "description": "The number of days in the history partition that was created when the table was created; ignored if create_schema is false. If history_days is not 0, create_history_days needs to be less than or equal to history_days.",
-          "required": true,
-          "mapstructureTag": "create_history_days"
-        },
-        {
-          "name": "ReplicationNum",
-          "type": "int32",
-          "description": "ReplicationNum is the number of replicas of the table; ignored if create_schema is false.",
-          "required": true,
-          "mapstructureTag": "replication_num"
-        },
-        {
-          "name": "TimeZone",
-          "type": "string",
-          "description": "Timezone is the timezone of the doris.",
-          "required": true,
-          "mapstructureTag": "timezone"
-        },
-        {
-          "name": "LogResponse",
-          "type": "bool",
-          "description": "LogResponse is whether to log the response of doris stream load.",
-          "required": true,
-          "mapstructureTag": "log_response"
-        },
-        {
-          "name": "LabelPrefix",
-          "type": "string",
-          "description": "LabelPrefix is the prefix of the label in doris stream load.",
-          "required": true,
-          "mapstructureTag": "label_prefix"
-        },
-        {
-          "name": "LogProgressInterval",
-          "type": "int",
-          "description": "ProgressInterval is the interval of the progress reporter.",
-          "required": true,
-          "mapstructureTag": "log_progress_interval"
-        },
-        {
-          "name": "timeLocation",
-          "type": "*time.Location",
-          "description": "not in config file, will be set in Validate",
-          "required": true,
-          "mapstructureTag": "-"
-        }
-      ],
-      "imports": [
-        "errors",
-        "fmt",
-        "regexp",
-        "time",
-        "go.opentelemetry.io/collector/config/confighttp",
-        "go.opentelemetry.io/collector/config/configopaque",
-        "go.opentelemetry.io/collector/config/configretry",
-        "go.opentelemetry.io/collector/exporter/exporterhelper"
-      ],
-      "packageName": "dorisexporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/dorisexporter/README.md"
   },
   {
     "name": "elasticsearchexporter",
     "description": "This exporter supports sending logs, metrics, traces and profiles to [Elasticsearch](https://www.elastic.co/elasticsearch).",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/elasticsearchexporter/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "QueueSettings",
-          "type": "exporterhelper.QueueBatchConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "sending_queue"
-        },
-        {
-          "name": "Endpoints",
-          "type": "[]string",
-          "description": "Endpoints holds the Elasticsearch URLs the exporter should send events to. This setting is required if CloudID is not set and if the ELASTICSEARCH_URL environment variable is not set.",
-          "required": true,
-          "mapstructureTag": "endpoints"
-        },
-        {
-          "name": "CloudID",
-          "type": "string",
-          "description": "CloudID holds the cloud ID to identify the Elastic Cloud cluster to send events to. https://www.elastic.co/guide/en/cloud/current/ec-cloud-id.html This setting is required if no URL is configured.",
-          "required": true,
-          "mapstructureTag": "cloudid"
-        },
-        {
-          "name": "NumWorkers",
-          "type": "int",
-          "description": "NumWorkers configures the number of workers publishing bulk requests.",
-          "required": true,
-          "mapstructureTag": "num_workers"
-        },
-        {
-          "name": "LogsIndex",
-          "type": "string",
-          "description": "LogsIndex configures the static index used for document routing for logs. It should be empty if dynamic document routing is preferred.",
-          "required": true,
-          "mapstructureTag": "logs_index"
-        },
-        {
-          "name": "LogsDynamicIndex",
-          "type": "DynamicIndexSetting",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "logs_dynamic_index"
-        },
-        {
-          "name": "MetricsIndex",
-          "type": "string",
-          "description": "MetricsIndex configures the static index used for document routing for metrics. It should be empty if dynamic document routing is preferred.",
-          "required": true,
-          "mapstructureTag": "metrics_index"
-        },
-        {
-          "name": "MetricsDynamicIndex",
-          "type": "DynamicIndexSetting",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "metrics_dynamic_index"
-        },
-        {
-          "name": "TracesIndex",
-          "type": "string",
-          "description": "TracesIndex configures the static index used for document routing for metrics. It should be empty if dynamic document routing is preferred.",
-          "required": true,
-          "mapstructureTag": "traces_index"
-        },
-        {
-          "name": "TracesDynamicIndex",
-          "type": "DynamicIndexSetting",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "traces_dynamic_index"
-        },
-        {
-          "name": "LogsDynamicID",
-          "type": "DynamicIDSettings",
-          "description": "LogsDynamicID configures whether log record attribute `elasticsearch.document_id` is set as the document ID in ES.",
-          "required": true,
-          "mapstructureTag": "logs_dynamic_id"
-        },
-        {
-          "name": "LogsDynamicPipeline",
-          "type": "DynamicPipelineSettings",
-          "description": "LogsDynamicPipeline configures whether log record attribute `elasticsearch.document_pipeline` is set as the document ingest pipeline for ES.",
-          "required": true,
-          "mapstructureTag": "logs_dynamic_pipeline"
-        },
-        {
-          "name": "Pipeline",
-          "type": "string",
-          "description": "Pipeline configures the ingest node pipeline name that should be used to process the events. https://www.elastic.co/guide/en/elasticsearch/reference/current/ingest.html",
-          "required": true,
-          "mapstructureTag": "pipeline"
-        },
-        {
-          "name": "Authentication",
-          "type": "AuthenticationSettings",
-          "description": "",
-          "required": true,
-          "mapstructureTag": ",squash"
-        },
-        {
-          "name": "Discovery",
-          "type": "DiscoverySettings",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "discover"
-        },
-        {
-          "name": "Retry",
-          "type": "RetrySettings",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "retry"
-        },
-        {
-          "name": "Flush",
-          "type": "FlushSettings",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "flush"
-        },
-        {
-          "name": "Mapping",
-          "type": "MappingsSettings",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "mapping"
-        },
-        {
-          "name": "LogstashFormat",
-          "type": "LogstashFormatSettings",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "logstash_format"
-        },
-        {
-          "name": "Batcher",
-          "type": "BatcherConfig",
-          "description": "Batcher holds configuration for batching requests based on timeout and size-based thresholds. Batcher is unused by default, in which case Flush will be used. If Batcher.Enabled is non-nil (i.e. batcher::enabled is specified), then the Flush will be ignored even if Batcher.Enabled is false.",
-          "required": true,
-          "mapstructureTag": "batcher"
-        }
-      ],
-      "imports": [
-        "encoding/base64",
-        "errors",
-        "fmt",
-        "net/url",
-        "os",
-        "slices",
-        "strings",
-        "time",
-        "go.opentelemetry.io/collector/config/configcompression",
-        "go.opentelemetry.io/collector/config/confighttp",
-        "go.opentelemetry.io/collector/config/configopaque",
-        "go.opentelemetry.io/collector/confmap",
-        "go.opentelemetry.io/collector/exporter/exporterbatcher",
-        "go.opentelemetry.io/collector/exporter/exporterhelper",
-        "go.uber.org/zap"
-      ],
-      "packageName": "elasticsearchexporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/elasticsearchexporter/README.md"
   },
   {
     "name": "faroexporter",
@@ -1465,80 +424,11 @@
     "name": "fileexporter",
     "description": "Writes telemetry data to files on disk.",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/fileexporter/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "Path",
-          "type": "string",
-          "description": "Path of the file to write to. Path is relative to current directory.",
-          "required": true,
-          "mapstructureTag": "path"
-        },
-        {
-          "name": "Append",
-          "type": "bool",
-          "description": "Mode defines whether the exporter should append to the file. Options: - false[default]:  truncates the file - true:  appends to the file.",
-          "required": true,
-          "mapstructureTag": "append"
-        },
-        {
-          "name": "Rotation",
-          "type": "*Rotation",
-          "description": "Rotation defines an option about rotation of telemetry files. Ignored when GroupByAttribute is used.",
-          "required": true,
-          "mapstructureTag": "rotation"
-        },
-        {
-          "name": "FormatType",
-          "type": "string",
-          "description": "FormatType define the data format of encoded telemetry data Options: - json[default]:  OTLP json bytes. - proto:  OTLP binary protobuf bytes.",
-          "required": true,
-          "mapstructureTag": "format"
-        },
-        {
-          "name": "Encoding",
-          "type": "*component.ID",
-          "description": "Encoding defines the encoding of the telemetry data. If specified, it overrides `FormatType` and applies an encoding extension.",
-          "required": true,
-          "mapstructureTag": "encoding"
-        },
-        {
-          "name": "Compression",
-          "type": "string",
-          "description": "Compression Codec used to export telemetry data Supported compression algorithms:`zstd`",
-          "required": true,
-          "mapstructureTag": "compression"
-        },
-        {
-          "name": "FlushInterval",
-          "type": "time.Duration",
-          "description": "FlushInterval is the duration between flushes. See time.ParseDuration for valid values.",
-          "required": true,
-          "mapstructureTag": "flush_interval"
-        },
-        {
-          "name": "GroupBy",
-          "type": "*GroupBy",
-          "description": "GroupBy enables writing to separate files based on a resource attribute.",
-          "required": true,
-          "mapstructureTag": "group_by"
-        }
-      ],
-      "imports": [
-        "errors",
-        "fmt",
-        "strings",
-        "time",
-        "go.opentelemetry.io/collector/component",
-        "go.opentelemetry.io/collector/confmap"
-      ],
-      "packageName": "fileexporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/fileexporter/README.md"
   },
   {
     "name": "googlecloudexporter",
-    "description": "This exporter can be used to send metrics to [Google Cloud Monitoring](https://cloud.google.com/monitoring)",
+    "description": "This exporter can be used to send metrics to [Google Cloud Monitoring](https://cloud.google.com/monitoring) (formerly Stackdriver), traces to [Google Cloud Trace](https://cloud.google.com/trace), and logs to [Google Cloud Logging](https://cloud.google.com/logging).",
     "stability": "Unknown",
     "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/googlecloudexporter/README.md",
     "configSchema": {
@@ -1570,90 +460,7 @@
     "name": "googlecloudpubsubexporter",
     "description": "> ⚠️ This is a community-provided module. It has been developed and extensively tested at Collibra, but it is not officially supported by GCP.",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/googlecloudpubsubexporter/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "TimeoutSettings",
-          "type": "exporterhelper.TimeoutConfig",
-          "description": "Timeout for all API calls. If not set, defaults to 12 seconds.",
-          "required": true,
-          "mapstructureTag": ",squash"
-        },
-        {
-          "name": "QueueSettings",
-          "type": "exporterhelper.QueueBatchConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "sending_queue"
-        },
-        {
-          "name": "ProjectID",
-          "type": "string",
-          "description": "Google Cloud Project ID where the Pubsub client will connect to",
-          "required": true,
-          "mapstructureTag": "project"
-        },
-        {
-          "name": "UserAgent",
-          "type": "string",
-          "description": "User agent that will be used by the Pubsub client to connect to the service",
-          "required": true,
-          "mapstructureTag": "user_agent"
-        },
-        {
-          "name": "Endpoint",
-          "type": "string",
-          "description": "Override of the Pubsub Endpoint, leave empty for the default endpoint",
-          "required": true,
-          "mapstructureTag": "endpoint"
-        },
-        {
-          "name": "Insecure",
-          "type": "bool",
-          "description": "Only has effect if Endpoint is not \"\"",
-          "required": true,
-          "mapstructureTag": "insecure"
-        },
-        {
-          "name": "Topic",
-          "type": "string",
-          "description": "The fully qualified resource name of the Pubsub topic",
-          "required": true,
-          "mapstructureTag": "topic"
-        },
-        {
-          "name": "Compression",
-          "type": "string",
-          "description": "Compression of the payload (only gzip or is supported, no compression is the default)",
-          "required": true,
-          "mapstructureTag": "compression"
-        },
-        {
-          "name": "Watermark",
-          "type": "WatermarkConfig",
-          "description": "Watermark defines the watermark (the ce-time attribute on the message) behavior",
-          "required": true,
-          "mapstructureTag": "watermark"
-        },
-        {
-          "name": "Ordering",
-          "type": "OrderingConfig",
-          "description": "Ordering configures the ordering keys",
-          "required": true,
-          "mapstructureTag": "ordering"
-        }
-      ],
-      "imports": [
-        "fmt",
-        "regexp",
-        "time",
-        "go.opentelemetry.io/collector/config/configretry",
-        "go.opentelemetry.io/collector/exporter/exporterhelper",
-        "go.uber.org/multierr"
-      ],
-      "packageName": "googlecloudpubsubexporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/googlecloudpubsubexporter/README.md"
   },
   {
     "name": "googlemanagedprometheusexporter",
@@ -1692,145 +499,17 @@
     "name": "honeycombmarkerexporter",
     "description": "This exporter allows creating [markers](https://docs.honeycomb.io/working-with-your-data/markers/), via the [Honeycomb Markers API](https://docs.honeycomb.io/api/tag/Markers#operation/createMarker), based on the look of incoming telemetry.",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/honeycombmarkerexporter/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "APIKey",
-          "type": "configopaque.String",
-          "description": "APIKey is the authentication token associated with the Honeycomb account.",
-          "required": true,
-          "mapstructureTag": "api_key"
-        },
-        {
-          "name": "APIURL",
-          "type": "string",
-          "description": "API URL to use (defaults to https://api.honeycomb.io)",
-          "required": true,
-          "mapstructureTag": "api_url"
-        },
-        {
-          "name": "Markers",
-          "type": "[]Marker",
-          "description": "Markers is the list of markers to create",
-          "required": true,
-          "mapstructureTag": "markers"
-        },
-        {
-          "name": "QueueSettings",
-          "type": "exporterhelper.QueueBatchConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "sending_queue"
-        }
-      ],
-      "imports": [
-        "fmt",
-        "go.opentelemetry.io/collector/component",
-        "go.opentelemetry.io/collector/config/confighttp",
-        "go.opentelemetry.io/collector/config/configopaque",
-        "go.opentelemetry.io/collector/config/configretry",
-        "go.opentelemetry.io/collector/exporter/exporterhelper",
-        "go.uber.org/zap",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/filter/filterottl",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl"
-      ],
-      "packageName": "honeycombmarkerexporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/honeycombmarkerexporter/README.md"
   },
   {
     "name": "influxdbexporter",
     "description": "This exporter supports sending tracing, metrics, and logging data to [InfluxDB](https://www.influxdata.com/products/).",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/influxdbexporter/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "QueueSettings",
-          "type": "exporterhelper.QueueBatchConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "sending_queue"
-        },
-        {
-          "name": "Org",
-          "type": "string",
-          "description": "Org is the InfluxDB organization name of the destination bucket.",
-          "required": true,
-          "mapstructureTag": "org"
-        },
-        {
-          "name": "Bucket",
-          "type": "string",
-          "description": "Bucket is the InfluxDB bucket name that telemetry will be written to.",
-          "required": true,
-          "mapstructureTag": "bucket"
-        },
-        {
-          "name": "Token",
-          "type": "configopaque.String",
-          "description": "Token is used to identify InfluxDB permissions within the organization.",
-          "required": true,
-          "mapstructureTag": "token"
-        },
-        {
-          "name": "V1Compatibility",
-          "type": "V1Compatibility",
-          "description": "V1Compatibility is used to specify if the exporter should use the v1.X InfluxDB API schema.",
-          "required": true,
-          "mapstructureTag": "v1_compatibility"
-        },
-        {
-          "name": "SpanDimensions",
-          "type": "[]string",
-          "description": "SpanDimensions are span attributes to be used as line protocol tags. These are always included as tags: - trace ID - span ID The default values are strongly recommended for use with Jaeger: - service.name - span.name Other common attributes can be found here: - https://opentelemetry.io/docs/specs/semconv/",
-          "required": true,
-          "mapstructureTag": "span_dimensions"
-        },
-        {
-          "name": "LogRecordDimensions",
-          "type": "[]string",
-          "description": "LogRecordDimensions are log record attributes to be used as line protocol tags. These are always included as tags, if available: - trace ID - span ID The default values: - service.name Other common attributes can be found here: - https://opentelemetry.io/docs/specs/semconv/ When using InfluxDB for both logs and traces, be certain that log_record_dimensions matches the tracing span_dimensions value.",
-          "required": true,
-          "mapstructureTag": "log_record_dimensions"
-        },
-        {
-          "name": "MetricsSchema",
-          "type": "string",
-          "description": "MetricsSchema indicates the metrics schema to emit to line protocol. Options: - telegraf-prometheus-v1 - telegraf-prometheus-v2",
-          "required": true,
-          "mapstructureTag": "metrics_schema"
-        },
-        {
-          "name": "PayloadMaxLines",
-          "type": "int",
-          "description": "PayloadMaxLines is the maximum number of line protocol lines to POST in a single request.",
-          "required": true,
-          "mapstructureTag": "payload_max_lines"
-        },
-        {
-          "name": "PayloadMaxBytes",
-          "type": "int",
-          "description": "PayloadMaxBytes is the maximum number of line protocol bytes to POST in a single request.",
-          "required": true,
-          "mapstructureTag": "payload_max_bytes"
-        }
-      ],
-      "imports": [
-        "fmt",
-        "strings",
-        "go.opentelemetry.io/collector/config/confighttp",
-        "go.opentelemetry.io/collector/config/configopaque",
-        "go.opentelemetry.io/collector/config/configretry",
-        "go.opentelemetry.io/collector/exporter/exporterhelper",
-        "golang.org/x/exp/maps"
-      ],
-      "packageName": "influxdbexporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/influxdbexporter/README.md"
   },
   {
     "name": "kafkaexporter",
-    "description": "Kafka exporter exports logs, metrics, and traces to Kafka. This exporter uses a synchronous producer",
+    "description": "Kafka exporter exports logs, metrics, and traces to Kafka. This exporter uses a synchronous producer that blocks and does not batch messages, therefore it should be used with batch and queued retry processors for higher throughput and resiliency. Message payload encoding is configurable.",
     "stability": "Unknown",
     "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/kafkaexporter/README.md",
     "configSchema": {
@@ -1910,7 +589,7 @@
   },
   {
     "name": "kineticaexporter",
-    "description": "No description available",
+    "description": "- [Overview](#overview) - [Installation](#installation) - [Documentation](#documentation) - [Support](#support) - [Contact Us](#contact-us)",
     "stability": "Unknown",
     "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/kineticaexporter/README.md",
     "configSchema": {
@@ -1964,214 +643,29 @@
     "name": "loadbalancingexporter",
     "description": "This is an exporter that will consistently export spans, metrics and logs depending on the `routing_key` configured.",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/loadbalancingexporter/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "TimeoutSettings",
-          "type": "exporterhelper.TimeoutConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": ",squash"
-        },
-        {
-          "name": "QueueSettings",
-          "type": "exporterhelper.QueueBatchConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "sending_queue"
-        },
-        {
-          "name": "Protocol",
-          "type": "Protocol",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "protocol"
-        },
-        {
-          "name": "Resolver",
-          "type": "ResolverSettings",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "resolver"
-        },
-        {
-          "name": "RoutingKey",
-          "type": "string",
-          "description": "RoutingKey is a single routing key value",
-          "required": true,
-          "mapstructureTag": "routing_key"
-        },
-        {
-          "name": "RoutingAttributes",
-          "type": "[]string",
-          "description": "RoutingAttributes creates a composite routing key, based on several resource attributes of the application. Supports all attributes available (both resource and span), as well as the pseudo attributes \"span.kind\" and \"span.name\".",
-          "required": true,
-          "mapstructureTag": "routing_attributes"
-        }
-      ],
-      "imports": [
-        "time",
-        "github.com/aws/aws-sdk-go-v2/service/servicediscovery/types",
-        "go.opentelemetry.io/collector/config/configretry",
-        "go.opentelemetry.io/collector/exporter/exporterhelper",
-        "go.opentelemetry.io/collector/exporter/otlpexporter"
-      ],
-      "packageName": "loadbalancingexporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/loadbalancingexporter/README.md"
   },
   {
     "name": "logicmonitorexporter",
     "description": "This exporter supports sending traces & logs to [Logicmonitor](https://www.logicmonitor.com/).",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/logicmonitorexporter/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "QueueSettings",
-          "type": "exporterhelper.QueueBatchConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "sending_queue"
-        },
-        {
-          "name": "ResourceToTelemetrySettings",
-          "type": "resourcetotelemetry.Settings",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "resource_to_telemetry_conversion"
-        },
-        {
-          "name": "APIToken",
-          "type": "APIToken",
-          "description": "ApiToken of Logicmonitor Platform",
-          "required": true,
-          "mapstructureTag": "api_token"
-        },
-        {
-          "name": "Logs",
-          "type": "LogsConfig",
-          "description": "Logs defines the Logs exporter specific configuration",
-          "required": true,
-          "mapstructureTag": "logs"
-        }
-      ],
-      "imports": [
-        "fmt",
-        "net/url",
-        "strings",
-        "go.opentelemetry.io/collector/config/confighttp",
-        "go.opentelemetry.io/collector/config/configopaque",
-        "go.opentelemetry.io/collector/config/configretry",
-        "go.opentelemetry.io/collector/exporter/exporterhelper",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/resourcetotelemetry"
-      ],
-      "packageName": "logicmonitorexporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/logicmonitorexporter/README.md"
   },
   {
     "name": "logzioexporter",
     "description": "This exporter supports sending trace and log data to [Logz.io](https://www.logz.io)",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/logzioexporter/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "QueueSettings",
-          "type": "exporterhelper.QueueBatchConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "sending_queue"
-        },
-        {
-          "name": "Token",
-          "type": "configopaque.String",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "account_token"
-        },
-        {
-          "name": "Region",
-          "type": "string",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "region"
-        },
-        {
-          "name": "CustomEndpoint",
-          "type": "string",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "custom_endpoint"
-        },
-        {
-          "name": "DrainInterval",
-          "type": "int",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "drain_interval"
-        },
-        {
-          "name": "QueueCapacity",
-          "type": "int64",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "queue_capacity"
-        },
-        {
-          "name": "QueueMaxLength",
-          "type": "int",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "queue_max_length"
-        }
-      ],
-      "imports": [
-        "errors",
-        "github.com/hashicorp/go-hclog",
-        "go.opentelemetry.io/collector/config/confighttp",
-        "go.opentelemetry.io/collector/config/configopaque",
-        "go.opentelemetry.io/collector/config/configretry",
-        "go.opentelemetry.io/collector/exporter/exporterhelper"
-      ],
-      "packageName": "logzioexporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/logzioexporter/README.md"
   },
   {
     "name": "lokiexporter",
     "description": "Exports data via HTTP to [Loki](https://grafana.com/docs/loki/latest/).",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/lokiexporter/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "QueueSettings",
-          "type": "exporterhelper.QueueBatchConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "sending_queue"
-        },
-        {
-          "name": "DefaultLabelsEnabled",
-          "type": "map[string]bool",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "default_labels_enabled"
-        }
-      ],
-      "imports": [
-        "fmt",
-        "net/url",
-        "go.opentelemetry.io/collector/config/confighttp",
-        "go.opentelemetry.io/collector/config/configretry",
-        "go.opentelemetry.io/collector/exporter/exporterhelper"
-      ],
-      "packageName": "lokiexporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/lokiexporter/README.md"
   },
   {
     "name": "mezmoexporter",
-    "description": "This exporter supports sending OpenTelemetry log data to",
+    "description": "This exporter supports sending OpenTelemetry log data to [Mezmo](https://mezmo.com).",
     "stability": "Unknown",
     "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/mezmoexporter/README.md",
     "configSchema": {
@@ -2245,123 +739,13 @@
     "name": "opensearchexporter",
     "description": "OpenSearch exporter supports sending OpenTelemetry signals as documents to [OpenSearch](https://www.opensearch.org).",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/opensearchexporter/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "TimeoutSettings",
-          "type": "exporterhelper.TimeoutConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": ",squash"
-        },
-        {
-          "name": "MappingsSettings",
-          "type": "",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "mapping"
-        },
-        {
-          "name": "QueueConfig",
-          "type": "exporterhelper.QueueBatchConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "sending_queue"
-        }
-      ],
-      "imports": [
-        "errors",
-        "strings",
-        "go.opentelemetry.io/collector/config/confighttp",
-        "go.opentelemetry.io/collector/config/configretry",
-        "go.opentelemetry.io/collector/exporter/exporterhelper"
-      ],
-      "packageName": "opensearchexporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/opensearchexporter/README.md"
   },
   {
     "name": "otelarrowexporter",
-    "description": "Exports telemetry data using [OpenTelemetry Protocol with Apache",
+    "description": "Exports telemetry data using [OpenTelemetry Protocol with Apache Arrow](https://github.com/open-telemetry/otel-arrow) components with support for both OpenTelemetry Protocol with Apache Arrow and standard [OpenTelemetry Protocol]( https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/protocol/otlp.md) (OTLP) protocol via gRPC.",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/otelarrowexporter/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "TimeoutSettings",
-          "type": "exporterhelper.TimeoutConfig",
-          "description": "Timeout, Retry, Queue, and gRPC client settings are inherited from exporterhelper using field names intentionally identical to the core OTLP exporter.",
-          "required": true,
-          "mapstructureTag": ",squash"
-        },
-        {
-          "name": "QueueSettings",
-          "type": "exporterhelper.QueueBatchConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "sending_queue"
-        },
-        {
-          "name": "RetryConfig",
-          "type": "configretry.BackOffConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "retry_on_failure"
-        },
-        {
-          "name": "BatcherConfig",
-          "type": "exporterbatcher.Config",
-          "description": "Experimental: This configuration is at the early stage of development and may change without backward compatibility until https://github.com/open-telemetry/opentelemetry-collector/issues/8122 is resolved",
-          "required": true,
-          "mapstructureTag": "batcher"
-        },
-        {
-          "name": "Arrow",
-          "type": "ArrowConfig",
-          "description": "Arrow includes settings specific to OTel Arrow.",
-          "required": true,
-          "mapstructureTag": "arrow"
-        },
-        {
-          "name": "UserDialOptions",
-          "type": "[]grpc.DialOption",
-          "description": "UserDialOptions cannot be configured via `mapstructure` schemes.  This is useful for custom purposes where the exporter is built and configured via code instead of yaml. Uses include custom dialer, custom user-agent, etc.",
-          "required": true,
-          "mapstructureTag": "-"
-        },
-        {
-          "name": "MetadataKeys",
-          "type": "[]string",
-          "description": "MetadataKeys is a list of client.Metadata keys that will be used to form distinct exporters.  If this setting is empty, a single exporter instance will be used.  When this setting is not empty, one exporter will be used per distinct combination of values for the listed metadata keys. Empty value and unset metadata are treated as distinct cases. Entries are case-insensitive.  Duplicated entries will trigger a validation error.",
-          "required": true,
-          "mapstructureTag": "metadata_keys"
-        },
-        {
-          "name": "MetadataCardinalityLimit",
-          "type": "uint32",
-          "description": "MetadataCardinalityLimit indicates the maximum number of exporter instances that will be created through a distinct combination of MetadataKeys.",
-          "required": true,
-          "mapstructureTag": "metadata_cardinality_limit"
-        }
-      ],
-      "imports": [
-        "fmt",
-        "strings",
-        "time",
-        "github.com/open-telemetry/otel-arrow/pkg/config",
-        "go.opentelemetry.io/collector/component",
-        "go.opentelemetry.io/collector/config/configcompression",
-        "go.opentelemetry.io/collector/config/configgrpc",
-        "go.opentelemetry.io/collector/config/configretry",
-        "go.opentelemetry.io/collector/confmap/xconfmap",
-        "go.opentelemetry.io/collector/exporter/exporterbatcher",
-        "go.opentelemetry.io/collector/exporter/exporterhelper",
-        "google.golang.org/grpc",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/otelarrowexporter/internal/arrow",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/otelarrow/compression/zstd"
-      ],
-      "packageName": "otelarrowexporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/otelarrowexporter/README.md"
   },
   {
     "name": "prometheusexporter",
@@ -2432,347 +816,27 @@
   },
   {
     "name": "prometheusremotewriteexporter",
-    "description": "Prometheus Remote Write Exporter sends OpenTelemetry metrics",
+    "description": "Prometheus Remote Write Exporter sends OpenTelemetry metrics to Prometheus [remote write compatible backends](https://prometheus.io/docs/operating/integrations/) such as Cortex, Mimir, and Thanos. By default, this exporter requires TLS and offers queued retry capabilities.",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/prometheusremotewriteexporter/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "TimeoutSettings",
-          "type": "exporterhelper.TimeoutConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": ",squash"
-        },
-        {
-          "name": "Namespace",
-          "type": "string",
-          "description": "prefix attached to each exported metric name See: https://prometheus.io/docs/practices/naming/#metric-names",
-          "required": true,
-          "mapstructureTag": "namespace"
-        },
-        {
-          "name": "RemoteWriteQueue",
-          "type": "RemoteWriteQueue",
-          "description": "QueueConfig allows users to fine tune the queues that handle outgoing requests.",
-          "required": true,
-          "mapstructureTag": "remote_write_queue"
-        },
-        {
-          "name": "ExternalLabels",
-          "type": "map[string]string",
-          "description": "ExternalLabels defines a map of label keys and values that are allowed to start with reserved prefix \"__\"",
-          "required": true,
-          "mapstructureTag": "external_labels"
-        },
-        {
-          "name": "ClientConfig",
-          "type": "confighttp.ClientConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": ",squash"
-        },
-        {
-          "name": "MaxBatchSizeBytes",
-          "type": "int",
-          "description": "maximum size in bytes of time series batch sent to remote storage",
-          "required": true,
-          "mapstructureTag": "max_batch_size_bytes"
-        },
-        {
-          "name": "MaxBatchRequestParallelism",
-          "type": "*int",
-          "description": "maximum amount of parallel requests to do when handling large batch request",
-          "required": true,
-          "mapstructureTag": "max_batch_request_parallelism"
-        },
-        {
-          "name": "ResourceToTelemetrySettings",
-          "type": "resourcetotelemetry.Settings",
-          "description": "ResourceToTelemetrySettings is the option for converting resource attributes to telemetry attributes. \"Enabled\" - A boolean field to enable/disable this option. Default is `false`. If enabled, all the resource attributes will be converted to metric labels by default.",
-          "required": true,
-          "mapstructureTag": "resource_to_telemetry_conversion"
-        },
-        {
-          "name": "WAL",
-          "type": "*WALConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "wal"
-        },
-        {
-          "name": "TargetInfo",
-          "type": "*TargetInfo",
-          "description": "TargetInfo allows customizing the target_info metric",
-          "required": false,
-          "mapstructureTag": "target_info,omitempty"
-        },
-        {
-          "name": "AddMetricSuffixes",
-          "type": "bool",
-          "description": "AddMetricSuffixes controls whether unit and type suffixes are added to metrics on export",
-          "required": true,
-          "mapstructureTag": "add_metric_suffixes"
-        },
-        {
-          "name": "SendMetadata",
-          "type": "bool",
-          "description": "SendMetadata controls whether prometheus metadata will be generated and sent",
-          "required": true,
-          "mapstructureTag": "send_metadata"
-        }
-      ],
-      "imports": [
-        "fmt",
-        "go.opentelemetry.io/collector/component",
-        "go.opentelemetry.io/collector/config/confighttp",
-        "go.opentelemetry.io/collector/config/configretry",
-        "go.opentelemetry.io/collector/exporter/exporterhelper",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/resourcetotelemetry"
-      ],
-      "packageName": "prometheusremotewriteexporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/prometheusremotewriteexporter/README.md"
   },
   {
     "name": "pulsarexporter",
-    "description": "Pulsar exporter exports logs, metrics, and traces to [Apache Pulsar](https://pulsar.apache.org/).",
+    "description": "Pulsar exporter exports logs, metrics, and traces to [Apache Pulsar](https://pulsar.apache.org/). This exporter uses a synchronous producer that blocks and able to batch messages.",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/pulsarexporter/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "TimeoutSettings",
-          "type": "exporterhelper.TimeoutConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": ",squash"
-        },
-        {
-          "name": "QueueSettings",
-          "type": "exporterhelper.QueueBatchConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "sending_queue"
-        },
-        {
-          "name": "Endpoint",
-          "type": "string",
-          "description": "Endpoint of pulsar broker (default \"pulsar://localhost:6650\")",
-          "required": true,
-          "mapstructureTag": "endpoint"
-        },
-        {
-          "name": "Topic",
-          "type": "string",
-          "description": "The name of the pulsar topic to export to (default otlp_spans for traces, otlp_metrics for metrics)",
-          "required": true,
-          "mapstructureTag": "topic"
-        },
-        {
-          "name": "Encoding",
-          "type": "string",
-          "description": "Encoding of messages (default \"otlp_proto\")",
-          "required": true,
-          "mapstructureTag": "encoding"
-        },
-        {
-          "name": "Producer",
-          "type": "Producer",
-          "description": "Producer configuration of the Pulsar producer",
-          "required": true,
-          "mapstructureTag": "producer"
-        },
-        {
-          "name": "TLSTrustCertsFilePath",
-          "type": "string",
-          "description": "Set the path to the trusted TLS certificate file",
-          "required": true,
-          "mapstructureTag": "tls_trust_certs_file_path"
-        },
-        {
-          "name": "TLSAllowInsecureConnection",
-          "type": "bool",
-          "description": "Configure whether the Pulsar client accept untrusted TLS certificate from broker (default: false)",
-          "required": true,
-          "mapstructureTag": "tls_allow_insecure_connection"
-        },
-        {
-          "name": "Authentication",
-          "type": "Authentication",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "auth"
-        },
-        {
-          "name": "OperationTimeout",
-          "type": "time.Duration",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "operation_timeout"
-        },
-        {
-          "name": "ConnectionTimeout",
-          "type": "time.Duration",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "connection_timeout"
-        },
-        {
-          "name": "MaxConnectionsPerBroker",
-          "type": "int",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "max_connections_per_broker"
-        }
-      ],
-      "imports": [
-        "fmt",
-        "time",
-        "github.com/apache/pulsar-client-go/pulsar",
-        "go.opentelemetry.io/collector/component",
-        "go.opentelemetry.io/collector/config/configopaque",
-        "go.opentelemetry.io/collector/config/configretry",
-        "go.opentelemetry.io/collector/exporter/exporterhelper"
-      ],
-      "packageName": "pulsarexporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/pulsarexporter/README.md"
   },
   {
     "name": "rabbitmqexporter",
     "description": "Exports metrics, traces, and logs to [RabbitMQ](https://www.rabbitmq.com/) using the AMQP 0.9.1 protocol.",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/rabbitmqexporter/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "Connection",
-          "type": "ConnectionConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "connection"
-        },
-        {
-          "name": "Routing",
-          "type": "RoutingConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "routing"
-        },
-        {
-          "name": "EncodingExtensionID",
-          "type": "*component.ID",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "encoding_extension"
-        },
-        {
-          "name": "Durable",
-          "type": "bool",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "durable"
-        },
-        {
-          "name": "RetrySettings",
-          "type": "configretry.BackOffConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "retry_on_failure"
-        }
-      ],
-      "imports": [
-        "errors",
-        "time",
-        "go.opentelemetry.io/collector/component",
-        "go.opentelemetry.io/collector/config/configretry",
-        "go.opentelemetry.io/collector/config/configtls"
-      ],
-      "packageName": "rabbitmqexporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/rabbitmqexporter/README.md"
   },
   {
     "name": "sapmexporter",
-    "description": "### Deprecated",
+    "description": "No description available",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/sapmexporter/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "Endpoint",
-          "type": "string",
-          "description": "Endpoint is the destination to where traces will be sent to in SAPM format. It must be a full URL and include the scheme, port and path e.g, https://ingest.signalfx.com/v2/trace",
-          "required": true,
-          "mapstructureTag": "endpoint"
-        },
-        {
-          "name": "AccessToken",
-          "type": "configopaque.String",
-          "description": "AccessToken is the authentication token provided by SignalFx.",
-          "required": true,
-          "mapstructureTag": "access_token"
-        },
-        {
-          "name": "NumWorkers",
-          "type": "uint",
-          "description": "NumWorkers is the number of workers that should be used to export traces. Exporter can make as many requests in parallel as the number of workers. Defaults to 8.",
-          "required": true,
-          "mapstructureTag": "num_workers"
-        },
-        {
-          "name": "MaxConnections",
-          "type": "uint",
-          "description": "MaxConnections is used to set a limit to the maximum idle HTTP connection the exporter can keep open.",
-          "required": true,
-          "mapstructureTag": "max_connections"
-        },
-        {
-          "name": "DisableCompression",
-          "type": "bool",
-          "description": "Disable compression. If set to true then Compression field is ignored.",
-          "required": true,
-          "mapstructureTag": "disable_compression"
-        },
-        {
-          "name": "Compression",
-          "type": "string",
-          "description": "Compression method to use (gzip or zstd). Ignored if DisableCompression=true. If unspecified defaults to gzip.",
-          "required": true,
-          "mapstructureTag": "compression"
-        },
-        {
-          "name": "LogDetailedResponse",
-          "type": "bool",
-          "description": "Log detailed response from trace ingest.",
-          "required": true,
-          "mapstructureTag": "log_detailed_response"
-        },
-        {
-          "name": "TimeoutSettings",
-          "type": "exporterhelper.TimeoutConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": ",squash"
-        },
-        {
-          "name": "QueueSettings",
-          "type": "exporterhelper.QueueBatchConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "sending_queue"
-        }
-      ],
-      "imports": [
-        "errors",
-        "fmt",
-        "net/url",
-        "sapmclient \"github.com/signalfx/sapm-proto/client\"",
-        "go.opentelemetry.io/collector/config/configopaque",
-        "go.opentelemetry.io/collector/config/configretry",
-        "go.opentelemetry.io/collector/exporter/exporterhelper",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/splunk"
-      ],
-      "packageName": "sapmexporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/sapmexporter/README.md"
   },
   {
     "name": "sematextexporter",
@@ -2846,365 +910,17 @@
     "name": "signalfxexporter",
     "description": "This exporter can be used to send metrics, events, and trace correlation to SignalFx.",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/signalfxexporter/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "QueueSettings",
-          "type": "exporterhelper.QueueBatchConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "sending_queue"
-        },
-        {
-          "name": "AccessToken",
-          "type": "configopaque.String",
-          "description": "AccessToken is the authentication token provided by SignalFx.",
-          "required": true,
-          "mapstructureTag": "access_token"
-        },
-        {
-          "name": "Realm",
-          "type": "string",
-          "description": "Realm is the SignalFx realm where data is going to be sent to.",
-          "required": true,
-          "mapstructureTag": "realm"
-        },
-        {
-          "name": "IngestURL",
-          "type": "string",
-          "description": "IngestURL is the destination to where SignalFx metrics will be sent to, it is intended for tests and debugging. The value of Realm is ignored if the URL is specified. The exporter will automatically append the appropriate path: \"/v2/datapoint\" for metrics, and \"/v2/event\" for events.",
-          "required": true,
-          "mapstructureTag": "ingest_url"
-        },
-        {
-          "name": "IngestTLSSettings",
-          "type": "configtls.ClientConfig",
-          "description": "ingest_tls needs to be set if the exporter's IngestURL is pointing to a signalfx receiver with TLS enabled and using a self-signed certificate where its CA is not loaded in the system cert pool.",
-          "required": false,
-          "mapstructureTag": "ingest_tls,omitempty"
-        },
-        {
-          "name": "APIURL",
-          "type": "string",
-          "description": "APIURL is the destination to where SignalFx metadata will be sent. This value takes precedence over the value of Realm",
-          "required": true,
-          "mapstructureTag": "api_url"
-        },
-        {
-          "name": "APITLSSettings",
-          "type": "configtls.ClientConfig",
-          "description": "api_tls needs to be set if the exporter's APIURL is pointing to a httpforwarder extension with TLS enabled and using a self-signed certificate where its CA is not loaded in the system cert pool.",
-          "required": false,
-          "mapstructureTag": "api_tls,omitempty"
-        },
-        {
-          "name": "LogDataPoints",
-          "type": "bool",
-          "description": "Whether to log datapoints dispatched to Splunk Observability Cloud",
-          "required": true,
-          "mapstructureTag": "log_data_points"
-        },
-        {
-          "name": "LogDimensionUpdates",
-          "type": "bool",
-          "description": "Whether to log dimension updates being sent to SignalFx.",
-          "required": true,
-          "mapstructureTag": "log_dimension_updates"
-        },
-        {
-          "name": "DimensionClient",
-          "type": "DimensionClientConfig",
-          "description": "Dimension update client configuration used for metadata updates.",
-          "required": true,
-          "mapstructureTag": "dimension_client"
-        },
-        {
-          "name": "DisableDefaultTranslationRules",
-          "type": "bool",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "disable_default_translation_rules"
-        },
-        {
-          "name": "DeltaTranslationTTL",
-          "type": "int64",
-          "description": "DeltaTranslationTTL specifies in seconds the max duration to keep the most recent datapoint for any `delta_metric` specified in TranslationRules. Default is 3600s.",
-          "required": true,
-          "mapstructureTag": "delta_translation_ttl"
-        },
-        {
-          "name": "SyncHostMetadata",
-          "type": "bool",
-          "description": "SyncHostMetadata defines if the exporter should scrape host metadata and sends it as property updates to SignalFx backend. IMPORTANT: Host metadata synchronization relies on `resourcedetection` processor. If this option is enabled make sure that `resourcedetection` processor is enabled in the pipeline with one of the cloud provider detectors or environment variable detector setting a unique value to `host.name` attribute within your k8s cluster. Also keep override And keep `override=true` in resourcedetection config.",
-          "required": true,
-          "mapstructureTag": "sync_host_metadata"
-        },
-        {
-          "name": "ExcludeMetrics",
-          "type": "[]dpfilters.MetricFilter",
-          "description": "ExcludeMetrics defines dpfilter.MetricFilters that will determine metrics to be excluded from sending to SignalFx backend. If translations enabled with TranslationRules options, the exclusion will be applied on translated metrics.",
-          "required": true,
-          "mapstructureTag": "exclude_metrics"
-        },
-        {
-          "name": "IncludeMetrics",
-          "type": "[]dpfilters.MetricFilter",
-          "description": "IncludeMetrics defines dpfilter.MetricFilters to override exclusion any of metric. This option can be used to included metrics that are otherwise dropped by default. See ./translation/default_metrics.go for a list of metrics that are dropped by default.",
-          "required": true,
-          "mapstructureTag": "include_metrics"
-        },
-        {
-          "name": "ExcludeProperties",
-          "type": "[]dpfilters.PropertyFilter",
-          "description": "ExcludeProperties defines dpfilter.PropertyFilters to prevent inclusion of properties to include with dimension updates to the SignalFx backend.",
-          "required": true,
-          "mapstructureTag": "exclude_properties"
-        },
-        {
-          "name": "Correlation",
-          "type": "*correlation.Config",
-          "description": "Correlation configuration for syncing traces service and environment to metrics.",
-          "required": true,
-          "mapstructureTag": "correlation"
-        },
-        {
-          "name": "NonAlphanumericDimensionChars",
-          "type": "string",
-          "description": "NonAlphanumericDimensionChars is a list of allowable characters, in addition to alphanumeric ones, to be used in a dimension key.",
-          "required": true,
-          "mapstructureTag": "nonalphanumeric_dimension_chars"
-        },
-        {
-          "name": "DropHistogramBuckets",
-          "type": "bool",
-          "description": "Whether to drop histogram bucket metrics dispatched to Splunk Observability. Default value is set to false.",
-          "required": true,
-          "mapstructureTag": "drop_histogram_buckets"
-        },
-        {
-          "name": "SendOTLPHistograms",
-          "type": "bool",
-          "description": "Whether to send histogram metrics in OTLP format to Splunk Observability. Default value is set to false.",
-          "required": true,
-          "mapstructureTag": "send_otlp_histograms"
-        }
-      ],
-      "imports": [
-        "errors",
-        "fmt",
-        "net/url",
-        "time",
-        "go.opentelemetry.io/collector/config/confighttp",
-        "go.opentelemetry.io/collector/config/configopaque",
-        "go.opentelemetry.io/collector/config/configretry",
-        "go.opentelemetry.io/collector/config/configtls",
-        "go.opentelemetry.io/collector/confmap",
-        "go.opentelemetry.io/collector/exporter/exporterhelper",
-        "gopkg.in/yaml.v3",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/signalfxexporter/internal/correlation",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/signalfxexporter/internal/translation",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/signalfxexporter/internal/translation/dpfilters",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/splunk"
-      ],
-      "packageName": "signalfxexporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/signalfxexporter/README.md"
   },
   {
     "name": "splunkhecexporter",
-    "description": "## Configuration",
+    "description": "No description available",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/splunkhecexporter/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "QueueSettings",
-          "type": "exporterhelper.QueueBatchConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "sending_queue"
-        },
-        {
-          "name": "BatcherConfig",
-          "type": "exporterbatcher.Config",
-          "description": "Experimental: This configuration is at the early stage of development and may change without backward compatibility until https://github.com/open-telemetry/opentelemetry-collector/issues/8122 is resolved.",
-          "required": true,
-          "mapstructureTag": "batcher"
-        },
-        {
-          "name": "LogDataEnabled",
-          "type": "bool",
-          "description": "LogDataEnabled can be used to disable sending logs by the exporter.",
-          "required": true,
-          "mapstructureTag": "log_data_enabled"
-        },
-        {
-          "name": "ProfilingDataEnabled",
-          "type": "bool",
-          "description": "ProfilingDataEnabled can be used to disable sending profiling data by the exporter.",
-          "required": true,
-          "mapstructureTag": "profiling_data_enabled"
-        },
-        {
-          "name": "Token",
-          "type": "configopaque.String",
-          "description": "HEC Token is the authentication token provided by Splunk: https://docs.splunk.com/Documentation/Splunk/latest/Data/UsetheHTTPEventCollector.",
-          "required": true,
-          "mapstructureTag": "token"
-        },
-        {
-          "name": "Source",
-          "type": "string",
-          "description": "Optional Splunk source: https://docs.splunk.com/Splexicon:Source. Sources identify the incoming data.",
-          "required": true,
-          "mapstructureTag": "source"
-        },
-        {
-          "name": "SourceType",
-          "type": "string",
-          "description": "Optional Splunk source type: https://docs.splunk.com/Splexicon:Sourcetype.",
-          "required": true,
-          "mapstructureTag": "sourcetype"
-        },
-        {
-          "name": "Index",
-          "type": "string",
-          "description": "Splunk index, optional name of the Splunk index.",
-          "required": true,
-          "mapstructureTag": "index"
-        },
-        {
-          "name": "DisableCompression",
-          "type": "bool",
-          "description": "Disable GZip compression. Defaults to false.",
-          "required": true,
-          "mapstructureTag": "disable_compression"
-        },
-        {
-          "name": "MaxContentLengthLogs",
-          "type": "uint",
-          "description": "Maximum log payload size in bytes. Default value is 2097152 bytes (2MiB). Maximum allowed value is 838860800 (~ 800 MB).",
-          "required": true,
-          "mapstructureTag": "max_content_length_logs"
-        },
-        {
-          "name": "MaxContentLengthMetrics",
-          "type": "uint",
-          "description": "Maximum metric payload size in bytes. Default value is 2097152 bytes (2MiB). Maximum allowed value is 838860800 (~ 800 MB).",
-          "required": true,
-          "mapstructureTag": "max_content_length_metrics"
-        },
-        {
-          "name": "MaxContentLengthTraces",
-          "type": "uint",
-          "description": "Maximum trace payload size in bytes. Default value is 2097152 bytes (2MiB). Maximum allowed value is 838860800 (~ 800 MB).",
-          "required": true,
-          "mapstructureTag": "max_content_length_traces"
-        },
-        {
-          "name": "MaxEventSize",
-          "type": "uint",
-          "description": "Maximum payload size, raw uncompressed. Default value is 5242880 bytes (5MiB). Maximum allowed value is 838860800 (~ 800 MB).",
-          "required": true,
-          "mapstructureTag": "max_event_size"
-        },
-        {
-          "name": "SplunkAppName",
-          "type": "string",
-          "description": "App name is used to track telemetry information for Splunk App's using HEC by App name. Defaults to \"OpenTelemetry Collector Contrib\".",
-          "required": true,
-          "mapstructureTag": "splunk_app_name"
-        },
-        {
-          "name": "SplunkAppVersion",
-          "type": "string",
-          "description": "App version is used to track telemetry information for Splunk App's using HEC by App version. Defaults to the current OpenTelemetry Collector Contrib build version.",
-          "required": true,
-          "mapstructureTag": "splunk_app_version"
-        },
-        {
-          "name": "OtelAttrsToHec",
-          "type": "splunk.HecToOtelAttrs",
-          "description": "OtelAttrsToHec creates a mapping from attributes to HEC specific metadata: source, sourcetype, index and host.",
-          "required": true,
-          "mapstructureTag": "otel_attrs_to_hec_metadata"
-        },
-        {
-          "name": "HecToOtelAttrs",
-          "type": "splunk.HecToOtelAttrs",
-          "description": "HecToOtelAttrs creates a mapping from attributes to HEC specific metadata: source, sourcetype, index and host. Deprecated: [v0.113.0] Use OtelAttrsToHec instead.",
-          "required": true,
-          "mapstructureTag": "hec_metadata_to_otel_attrs"
-        },
-        {
-          "name": "HecFields",
-          "type": "OtelToHecFields",
-          "description": "HecFields creates a mapping from attributes to HEC fields.",
-          "required": true,
-          "mapstructureTag": "otel_to_hec_fields"
-        },
-        {
-          "name": "HealthPath",
-          "type": "string",
-          "description": "HealthPath for health API, default is '/services/collector/health'",
-          "required": true,
-          "mapstructureTag": "health_path"
-        },
-        {
-          "name": "HecHealthCheckEnabled",
-          "type": "bool",
-          "description": "HecHealthCheckEnabled can be used to verify Splunk HEC health on exporter's startup",
-          "required": true,
-          "mapstructureTag": "health_check_enabled"
-        },
-        {
-          "name": "ExportRaw",
-          "type": "bool",
-          "description": "ExportRaw to send only the log's body, targeting a Splunk HEC raw endpoint.",
-          "required": true,
-          "mapstructureTag": "export_raw"
-        },
-        {
-          "name": "UseMultiMetricFormat",
-          "type": "bool",
-          "description": "UseMultiMetricFormat combines metric events to save space during ingestion.",
-          "required": true,
-          "mapstructureTag": "use_multi_metric_format"
-        },
-        {
-          "name": "Heartbeat",
-          "type": "HecHeartbeat",
-          "description": "Heartbeat is the configuration to enable heartbeat",
-          "required": true,
-          "mapstructureTag": "heartbeat"
-        },
-        {
-          "name": "Telemetry",
-          "type": "HecTelemetry",
-          "description": "Telemetry is the configuration for splunk hec exporter telemetry",
-          "required": true,
-          "mapstructureTag": "telemetry"
-        }
-      ],
-      "imports": [
-        "errors",
-        "fmt",
-        "net/url",
-        "path",
-        "time",
-        "go.opentelemetry.io/collector/config/confighttp",
-        "go.opentelemetry.io/collector/config/configopaque",
-        "go.opentelemetry.io/collector/config/configretry",
-        "go.opentelemetry.io/collector/exporter/exporterbatcher",
-        "go.opentelemetry.io/collector/exporter/exporterhelper",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/splunk"
-      ],
-      "packageName": "splunkhecexporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/splunkhecexporter/README.md"
   },
   {
     "name": "stefexporter",
-    "description": "Export data via gRPC using",
+    "description": "Export data via gRPC using [Otel/STEF format](https://github.com/splunk/stef/tree/main/go/otel) format.",
     "stability": "Unknown",
     "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/stefexporter/README.md",
     "configSchema": {
@@ -3241,87 +957,13 @@
   },
   {
     "name": "sumologicexporter",
-    "description": "## Migration to new architecture",
+    "description": "No description available",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/sumologicexporter/README.md",
-    "configSchema": {
-      "fields": [
-        {
-          "name": "QueueSettings",
-          "type": "exporterhelper.QueueBatchConfig",
-          "description": "",
-          "required": true,
-          "mapstructureTag": "sending_queue"
-        },
-        {
-          "name": "CompressEncoding",
-          "type": "*configcompression.Type",
-          "description": "Compression encoding format, either empty string, gzip or deflate (default gzip) Empty string means no compression NOTE: CompressEncoding is deprecated and will be removed in an upcoming release",
-          "required": true,
-          "mapstructureTag": "compress_encoding"
-        },
-        {
-          "name": "MaxRequestBodySize",
-          "type": "int",
-          "description": "Max HTTP request body size in bytes before compression (if applied). By default 1MB is recommended.",
-          "required": true,
-          "mapstructureTag": "max_request_body_size"
-        },
-        {
-          "name": "LogFormat",
-          "type": "LogFormatType",
-          "description": "Logs related configuration Format to post logs into Sumo. (default json) * text - Logs will appear in Sumo Logic in text format. * json - Logs will appear in Sumo Logic in json format. * otlp - Logs will be send in otlp format and will appear in Sumo Logic: * in json format if record level attributes exists * in text format in case of no level attributes See Sumo Logic documentation for more details: https://help.sumologic.com/docs/send-data/opentelemetry-collector/data-source-configurations/mapping-records-resources/",
-          "required": true,
-          "mapstructureTag": "log_format"
-        },
-        {
-          "name": "MetricFormat",
-          "type": "MetricFormatType",
-          "description": "Metrics related configuration The format of metrics you will be sending, either otlp or prometheus (Default is otlp)",
-          "required": true,
-          "mapstructureTag": "metric_format"
-        },
-        {
-          "name": "DecomposeOtlpHistograms",
-          "type": "bool",
-          "description": "Decompose OTLP Histograms into individual metrics, similar to how they're represented in Prometheus format",
-          "required": true,
-          "mapstructureTag": "decompose_otlp_histograms"
-        },
-        {
-          "name": "Client",
-          "type": "string",
-          "description": "Sumo specific options Name of the client",
-          "required": true,
-          "mapstructureTag": "client"
-        },
-        {
-          "name": "StickySessionEnabled",
-          "type": "bool",
-          "description": "StickySessionEnabled defines if sticky session support is enable. By default this is false.",
-          "required": true,
-          "mapstructureTag": "sticky_session_enabled"
-        }
-      ],
-      "imports": [
-        "errors",
-        "fmt",
-        "net/url",
-        "time",
-        "go.opentelemetry.io/collector/component",
-        "go.opentelemetry.io/collector/config/configauth",
-        "go.opentelemetry.io/collector/config/configcompression",
-        "go.opentelemetry.io/collector/config/confighttp",
-        "go.opentelemetry.io/collector/config/configretry",
-        "go.opentelemetry.io/collector/exporter/exporterhelper",
-        "github.com/open-telemetry/opentelemetry-collector-contrib/extension/sumologicextension"
-      ],
-      "packageName": "sumologicexporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/sumologicexporter/README.md"
   },
   {
     "name": "syslogexporter",
-    "description": "The Syslog exporter sends logs in [syslog][syslog_wikipedia] format to a remote syslog server.",
+    "description": "The Syslog exporter sends logs in [syslog][syslog_wikipedia] format to a remote syslog server. It supports syslog protocols [RFC5424][RFC5424] and [RFC3164][RFC3164] and can send data over `TCP` or `UDP`. The exporter aims to be compatible with the [Syslog receiver][syslog_receiver]. This means that syslog messages received via the Syslog receiver and exported via the Syslog exporter should be unchanged.",
     "stability": "Unknown",
     "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/syslogexporter/README.md",
     "configSchema": {
@@ -3398,20 +1040,11 @@
     "name": "tencentcloudlogserviceexporter",
     "description": "This exporter supports sending OpenTelemetry log data to [LogService](https://cloud.tencent.com/product/cls).",
     "stability": "Unknown",
-    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/tencentcloudlogserviceexporter/README.md",
-    "configSchema": {
-      "fields": [],
-      "imports": [
-        "errors",
-        "go.opentelemetry.io/collector/component",
-        "go.opentelemetry.io/collector/config/configopaque"
-      ],
-      "packageName": "tencentcloudlogserviceexporter"
-    }
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/tencentcloudlogserviceexporter/README.md"
   },
   {
     "name": "zipkinexporter",
-    "description": "Exports data to a [Zipkin](https://zipkin.io/) back-end.",
+    "description": "Exports data to a [Zipkin](https://zipkin.io/) back-end. By default, this exporter requires TLS and offers queued retry capabilities.",
     "stability": "Unknown",
     "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/zipkinexporter/README.md",
     "configSchema": {
@@ -3426,7 +1059,7 @@
         {
           "name": "Format",
           "type": "string",
-          "description": "",
+          "description": "Configures the exporter client. The Endpoint to send the Zipkin trace data to (e.g.: http://some.url:9411/api/v2/spans).",
           "required": true,
           "mapstructureTag": "format"
         },

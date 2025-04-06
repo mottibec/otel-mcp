@@ -1,5 +1,16 @@
 {
-  "fields": [],
-  "imports": [],
+  "fields": [
+    {
+      "name": "AckInterval",
+      "type": "time.Duration",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "ack_interval"
+    }
+  ],
+  "imports": [
+    "time",
+    "go.opentelemetry.io/collector/config/configgrpc"
+  ],
   "packageName": "stefreceiver"
 }

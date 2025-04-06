@@ -3,7 +3,7 @@
     {
       "name": "Encoding",
       "type": "string",
-      "description": "Encoding identifies the encoding of records received from Firehose. Defaults to telemetry-specific encodings: \"cwlog\" for logs, and \"cwmetrics\" for metrics.",
+      "description": "ServerConfig is used to set up the Firehose delivery endpoint. The Firehose delivery stream expects an HTTPS endpoint, so TLSSettings must be used to enable that. Encoding identifies the encoding of records received from Firehose. Defaults to telemetry-specific encodings: \"cwlog\" for logs, and \"cwmetrics\" for metrics.",
       "required": true,
       "mapstructureTag": "encoding"
     },

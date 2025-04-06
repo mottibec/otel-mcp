@@ -3,7 +3,7 @@
     {
       "name": "ParseStringTags",
       "type": "bool",
-      "description": "If enabled the zipkin receiver will attempt to parse string tags/binary annotations into int/bool/float. Disabled by default",
+      "description": "Configures the receiver server protocol. If enabled the zipkin receiver will attempt to parse string tags/binary annotations into int/bool/float. Disabled by default",
       "required": true,
       "mapstructureTag": "parse_string_tags"
     }

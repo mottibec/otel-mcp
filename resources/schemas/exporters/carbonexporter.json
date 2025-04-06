@@ -3,7 +3,7 @@
     {
       "name": "MaxIdleConns",
       "type": "int",
-      "description": "MaxIdleConns is used to set a limit to the maximum idle TCP connections the client can keep open. Default value is 100. If `sending_queue` is enabled, it is recommended to use same value as `sending_queue::num_consumers`.",
+      "description": "Specifies the connection endpoint config. The default value is \"localhost:2003\". MaxIdleConns is used to set a limit to the maximum idle TCP connections the client can keep open. Default value is 100. If `sending_queue` is enabled, it is recommended to use same value as `sending_queue::num_consumers`.",
       "required": true,
       "mapstructureTag": "max_idle_conns"
     },

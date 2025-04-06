@@ -3,7 +3,7 @@
     {
       "name": "Username",
       "type": "string",
-      "description": "TODO allow users to add additional resource key value pairs? Optional username. Use the specified Username to authenticate the current connection with one of the connections defined in the ACL list when connecting to a Redis 6.0 instance, or greater, that is using the Redis ACL system.",
+      "description": "TODO: Use one of the configs from core. The target endpoint. TODO allow users to add additional resource key value pairs? Optional username. Use the specified Username to authenticate the current connection with one of the connections defined in the ACL list when connecting to a Redis 6.0 instance, or greater, that is using the Redis ACL system.",
       "required": true,
       "mapstructureTag": "username"
     },
